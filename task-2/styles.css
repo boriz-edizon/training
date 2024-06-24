@@ -1,0 +1,30 @@
+.container {
+    display: grid;
+    height: 100%;
+    grid-gap: 3px;
+    grid-template-columns: 0.3fr auto auto;
+    grid-template-rows: 0.15fr [sidebar-start] auto auto [sidebar-end] 0.18fr;
+
+}
+.container > div {
+    display: flex;
+    justify-content: center;
+    border: 0.1px solid black;
+    align-items: center;
+    font-size: 2em;
+    color: white;
+}
+.main {
+    background: linear-gradient(to right, #7057DA, #8C79E2);
+    grid-column: 1 / -1;
+}
+.sidebar {
+    background: linear-gradient(to bottom, #3BD7CF, #29A59E);
+    grid-row: sidebar;
+}
+.content {
+    background: linear-gradient(to bottom right, #6955DA, #38D4DE);    
+}
+.content-1{
+    grid-column: 2 / -1;
+}

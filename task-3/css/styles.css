@@ -1,0 +1,116 @@
+a {
+    text-decoration: none;
+}
+
+/* navbar */
+.navbar {
+    height: 56px;
+    width: 100vw;
+    background-image: url("../assets/nav-bg.png");
+    top: 0;
+    position:fixed;
+    display: flex;
+    align-items: center;
+    border: auto auto 2px;
+    border-bottom: 2px solid #31B9E4;
+}
+.logo-img {
+    width: 134.02px;
+    height: 35.99px;
+    margin-left: 24px;
+}
+.navbar-nav {
+    margin: 0px;
+}
+.navbar-start {
+    display: flex;
+    align-items: start;
+}
+.navbar-end {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: row-reverse wrap;
+    margin-right: 24px;
+}
+.nav-item{
+    display: inline;
+    vertical-align:middle;
+    margin: 0 auto 0 32px !important;
+    
+}
+.nav-link {
+    position: relative;
+}
+.nav-link > span {
+    text-align: center;
+    vertical-align: center;
+    width: 17px;
+    margin: auto;
+    height: 17px;
+    font-size: 12px;
+    border-radius: 50%;
+    position: absolute;
+    right: -1;
+    top: -18;
+    color: white;
+    background-color: #2A7FF3;
+}
+.nav-item > a {
+    color: #3FD28B;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0;
+    font-weight: normal;
+}
+.user-img {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 2px solid #3FD28B;
+    position: relative;
+
+}
+.user-img ~ span {
+    right: -1;
+    top: -23;
+    color: black ;
+    background-color: white;
+}
+
+
+/* footer */
+footer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    flex-direction: column;
+    bottom: 0;
+}
+.footer-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-bottom {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E0E1E1;
+}
+.footer-top > p > a {
+    color: #1F7A54;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0;
+}
+.footer-bottom > a > img {
+    height: 24px;
+    width: 90px;
+}
+.footer-bottom > p {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
+}

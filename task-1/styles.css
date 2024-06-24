@@ -1,0 +1,55 @@
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.main-div{
+    width: 457px;
+    height: 138px;
+    border: 0.1px solid black;
+    display: flex;
+}
+.inside-div {
+    margin: 4px 0 4px 4px;
+}
+.mosh-img {
+    width: 130px;
+    height: 130px;
+}
+.desc {
+    margin: 4px 4px 4px 14px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.desc-address{
+    margin: 0;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 20px;
+    color: #000000;
+}
+.desc-info {
+    margin: 0;
+    font-family: "Roboto";
+    font-weight: normal;
+    font-size: 20px;
+    color: #000000;
+    margin-top: 14px;
+}
+.desc-actions {
+    margin: 0;
+    margin-top: 24px; 
+    display: flex; 
+    align-items: center;
+}
+.action-text {
+    margin-left: 14px; 
+    margin-right: 24px;
+    font-family: "Roboto";
+    font-weight: medium;
+    font-size: 15px;
+    color: #858991;
+}

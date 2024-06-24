@@ -1,0 +1,141 @@
+body {
+    background-color: #EEEEEE;
+    font-family: Quicksand, sans-serif;
+    font-weight: medium;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* form */
+.form {
+    width: 488px;
+    background-color: #FFFFFF;
+    display: flex;
+    border-top: 4px solid #3AC7EC;
+    border-radius: 2px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 22px 32px 24px;
+    position: absolute;
+    top: 108px;
+}
+/* heading */
+.heading-icon {
+    color: #1F7A54; 
+    position: absolute; 
+    left: 32px;
+}
+.login-heading {
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0px;
+    display: inline;
+}
+/* radio-button */
+.radio-button-div {
+    margin-top: 32px; 
+    display: flex; 
+    align-items: center;
+}
+input[type="radio" ]{ 
+    accent-color: #1F7A54;
+    width: 20px;
+    height: 24px;
+}
+.radio-button-div > label {
+    font-size: 16px;
+    line-height: 20px;
+    margin-left:8px;
+    color: #333333;
+}
+.radio-button-div > .independent-school-input {
+    margin-left: 32px;
+}
+/* drop-down */
+.dropdown-box {
+    border-width: 0 0 0.1px;
+    border-color: #ECECEC;
+} 
+div > select {
+    height: 45px;
+    width: 100%;
+}
+.dropdown > label {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
+    color: #666666;
+}
+.dropdown-city-div {
+    margin-top: 25px;
+}
+.dropdown-district-div {
+    margin-top: 36px
+}
+.dropdown > select {
+    font-size: 16px;
+    line-height: 20px;
+    color: #222222;
+    letter-spacing: 0;
+}
+/* text-box */
+.input-box {
+    border-width: 0 0 0.1px;
+    border-color: #ECECEC;
+    padding-bottom: 5px;
+    width: 100%;
+}
+.username-div {
+    margin-top: 56px;
+}
+.password-div {
+    margin-top: 33px;
+}
+.input-box::placeholder {
+    font-size: 16px;
+    line-height: 20px;
+}
+.forgot-text {
+    margin: 0; 
+    margin-top: 5px;
+    text-align: end;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1F7A54;
+}
+/* checkbox */
+input[type="checkbox"]{
+    accent-color: #1F7A54;
+    height: 24px;
+    width: 18px;
+}
+.checkbox-div {
+    margin-top: 26px; 
+    display: flex; 
+    align-items: center; 
+}
+.checkbox-div > label {
+    margin-left: 5px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #222222;
+}
+
+/* login-button */
+.login-button-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 34px;
+}
+.login-button {
+    height: 40px;
+    width: 215.51px;
+    background-color: #3FD28B;
+    box-shadow: 0px 3px 5px #0000003D;
+    border: 0;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+
