@@ -95,12 +95,23 @@ body {
     display: grid;
     grid-gap: 25px 24px;
     grid-template-columns: repeat(2,minmax(476px,1fr));
-    grid-template-rows: repeat(2, minmax(246px, 1fr));
+    grid-template-rows: auto;
 }
 .course-card {
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
+}
+.course-card > .badge {
+    position: absolute;
+    background-color: #FFE4E6;
+    color: #D80000;
+    font-family: Museo, sans;
+    font-weight: medium;
+    font-size: 10px;
+    line-height: 16px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .course-card-top {
     margin: 24px 24px auto;
@@ -128,6 +139,8 @@ body {
     font-size: 16px !important;
     line-height: 20px !important;
     font-weight: normal;
+    color: black !important;
+
 }
 .course-desc-row-1 {
     margin-top: 7px !important;
@@ -176,4 +189,61 @@ body {
 }
 .course-3 {
     background-color: yellow;
+}
+
+/* footer */
+footer {
+    /* width: 100vw; */
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    bottom: 0;
+}
+.footer-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-bottom {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E0E1E1;
+}
+.footer-top > p > a {
+    color: #1F7A54;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0;
+}
+.footer-bottom > a > img {
+    height: 24px;
+    width: 90px;
+}
+.footer-bottom > p {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
+}
+
+/* media query */
+@media only screen and (max-width: 1030px) {
+    .courses-container {
+        margin-top: 16px;
+        display: grid;
+        grid-gap: 25px 24px;
+        grid-template-columns: repeat(1,minmax(571px,1fr));
+        grid-template-rows: repeat( 1fr);
+    }
+}
+@media only screen and (max-width: 614px) {
+    .courses-container {
+        margin-top: 16px;
+        display: grid;
+        grid-gap: 25px 24px;
+        grid-template-columns: repeat(1,minmax(571px,1fr));
+        grid-template-rows: repeat( 1fr);
+    }
 }

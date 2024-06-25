@@ -6,6 +6,7 @@ a {
 .navbar {
     height: 56px;
     width: 100vw;
+    z-index: 100;
     background-image: url("../assets/nav-bg.png");
     top: 0;
     position:fixed;
@@ -24,25 +25,40 @@ a {
 }
 .navbar-start {
     display: flex;
-    align-items: start;
+    align-items: center;
+    height: inherit;
 }
 .navbar-end {
     flex-grow: 1;
     display: flex;
+    height: inherit;
     flex-flow: row-reverse wrap;
     margin-right: 24px;
 }
+.navbar-nav {
+    height: inherit;
+    display: flex;
+    height: inherit;
+    align-items: center;
+}
 .nav-item{
-    display: inline;
-    vertical-align:middle;
+    display: flex;
+    align-items: center;
     margin: 0 auto 0 32px !important;
-    
+    height: inherit;
+
+}
+.nav-item-active {
+    border-bottom: 4px white solid;
 }
 .nav-link {
     position: relative;
+    
 }
 .nav-link > span {
     text-align: center;
+    height: inherit;
+
     vertical-align: center;
     width: 17px;
     margin: auto;
@@ -50,10 +66,22 @@ a {
     font-size: 12px;
     border-radius: 50%;
     position: absolute;
-    right: -1;
-    top: -18;
+    right: -4;
+    top: -5;
     color: white;
     background-color: #2A7FF3;
+}
+.nav-link > span > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+}
+.hamburger {
+    display: none;
+}
+.hamburger-items {
+    display: flex;
 }
 .nav-item > a {
     color: #3FD28B;
@@ -61,6 +89,9 @@ a {
     line-height: 14px;
     letter-spacing: 0;
     font-weight: normal;
+}
+.nav-item > .active {
+    color: white !important;
 }
 .user-img {
     height: 32px;
@@ -71,46 +102,18 @@ a {
 
 }
 .user-img ~ span {
-    right: -1;
-    top: -23;
+    right: -4;
+    top: -4;
     color: black ;
     background-color: white;
 }
 
-
-/* footer */
-footer {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    flex-direction: column;
-    bottom: 0;
-}
-.footer-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.footer-bottom {
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #E0E1E1;
-}
-.footer-top > p > a {
-    color: #1F7A54;
-    font-size: 14px;
-    line-height: 18px;
-    letter-spacing: 0;
-}
-.footer-bottom > a > img {
-    height: 24px;
-    width: 90px;
-}
-.footer-bottom > p {
-    font-size: 12px;
-    line-height: 16px;
-    letter-spacing: 0;
+/* media query */
+@media only screen and (max-width: 1030px) {
+    .hamburger {
+        display: flex;
+    }
+    .hamburger-items {
+        display: none;
+    }
 }

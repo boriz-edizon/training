@@ -138,4 +138,39 @@ input[type="checkbox"]{
     line-height: 18px;
 }
 
-
+/* footer */
+footer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    flex-direction: column;
+    bottom: 0;
+}
+.footer-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-bottom {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E0E1E1;
+}
+.footer-top > p > a {
+    color: #1F7A54;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0;
+}
+.footer-bottom > a > img {
+    height: 24px;
+    width: 90px;
+}
+.footer-bottom > p {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
+}
