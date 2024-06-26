@@ -43,3 +43,31 @@ Main content page<br>
  
 - Agile course - http://growingagile.thinkific.com/courses/scrumbasics
 - How browsers work - https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
+
+## task-4
+
+- CSS preprocessor  Sass with SCSS - https://www.youtube.com/watch?v=Zz6eOVaaelI 
+- Build Components in HTML, CSS & JS	https://scrimba.com/learn/buildcomponents 
+Accessibility course - https://www.udacity.com/course/web-accessibility--ud891 
+
+###  4.1 Convert the CSS written for the login and dashboard page with Sass 
+ 
+- Introduction to Javascript https://scrimba.com/learn/introductiontojavascript 
+- Intro to ES6	https://scrimba.com/learn/introtoes6 
+- Intro to Type Script 	https://scrimba.com/learn/intrototypescript 
+- https://code.tutsplus.com/tutorials/24-javascript-best-practices-for-beginners--net-5399     
+- introduction to JSON -  https://www.youtube.com/watch?v=iiADhChRriM  
+- HTML string template - https://wesbos.com/template-strings-html  
+ 
+### 4.2
+- Render Quantum Dashboard with JSON  
+- The task for TypeScript: convert the JS written on the login and dashboard page with TypeScript  
+- Dom manipulation -  please add the following functionalities to the dashboard page. 
+- On hovering over the Hamburger icon, the hamburger menu should get opened.  
+- On hovering over an alert icon, a preview alert div should be displayed   
+- A preview of the latest announcement should be shown by hovering over the announcement icon. 
+- On mouse out, all the open div should be closed. 
+- Please note the respective div should not get opened and closed abruptly; please add some animation to it  
+
+Here is the specification   
+: https://xd.adobe.com/view/319dc735-aea4-4bc4-bf6d-a56696eb0aa2-64ce/screen/76eec169-af5e-4b10-9251-38976e1e61be/ 
