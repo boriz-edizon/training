@@ -1,0 +1,112 @@
+@import './_variables';
+
+/* navbar */
+.navbar {
+    position:fixed;
+    top: 0;
+    @include yAlign(center);
+    height: 56px;
+    width: 100vw;
+    z-index: 100;
+    background-image: url("../assets/nav-bg.png");
+    border: auto auto 2px;
+    border-bottom: 2px solid $primaryColor-500;
+}
+.logo-img {
+    width: 134.02px;
+    height: 35.99px;
+    margin-left: 24px;
+}
+.navbar-nav {
+    margin: 0px;
+}
+.navbar-start {
+    @include yAlign(center);
+    height: inherit;
+}
+.navbar-end {
+    flex-grow: 1;
+    display: flex;
+    height: inherit;
+    flex-flow: row-reverse wrap;
+    margin-right: 24px;
+}
+.navbar-nav {
+    height: inherit;
+    @include yAlign(center);
+
+}
+.nav-item{
+    display: flex;
+    align-items: center;
+    margin: 0 auto 0 32px !important;
+    height: inherit;
+
+}
+.nav-item-active {
+    border-bottom: 4px $primaryColor-100 solid;
+}
+.nav-link {
+    position: relative;
+    
+}
+.nav-link > span {
+    text-align: center;
+    height: inherit;
+    vertical-align: center;
+    width: 17px;
+    margin: auto;
+    height: 17px;
+    font-size: $text-sm;
+    border-radius: 50%;
+    position: absolute;
+    right: -4;
+    top: -5;
+    color: $primaryColor-100;
+    background-color: $primaryColor-700;
+}
+.nav-link > span > div {
+    @include xyAlign(center,center);
+
+    height: inherit;
+}
+.hamburger {
+    display: none;
+}
+.hamburger-items {
+    display: flex;
+}
+.nav-item > a {
+    color: $primaryColor-400;
+    font-size: $text-base;
+    line-height: 14px;
+    letter-spacing: 0;
+    font-weight: normal;
+}
+.nav-item > .active {
+    color: $primaryColor-100 !important;
+}
+.user-img {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 2px solid $primaryColor-400;
+    position: relative;
+
+}
+.user-img ~ span {
+    right: -4;
+    top: -4;
+    color: $primaryColor-1100 ;
+    background-color: $primaryColor-100;
+}
+
+/* media query */
+@media only screen and (max-width: 1030px) {
+    .hamburger {
+        display: flex;
+    }
+    .hamburger-items {
+        display: none;
+    }
+}

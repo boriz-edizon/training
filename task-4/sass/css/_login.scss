@@ -1,21 +1,22 @@
-body {
+@import './_variables.scss';
+@import './_navbar.scss';
+
+.body-login {
     background-color: #EEEEEE;
     font-family: Quicksand, sans-serif;
     font-weight: medium;
     margin: 0;
-    display: flex;
-    justify-content: center;
+    @include xAlign(center);
 }
 
 /* form */
 .form {
     width: 488px;
     background-color: #FFFFFF;
-    display: flex;
+    @include xAlign(center);
     border-top: 4px solid #3AC7EC;
     border-radius: 2px;
     flex-direction: column;
-    justify-content: center;
     padding: 22px 32px 24px;
     position: absolute;
     top: 108px;
@@ -27,7 +28,7 @@ body {
     left: 32px;
 }
 .login-heading {
-    font-size: 24px;
+    font-size: $text-xl;
     line-height: 28px;
     letter-spacing: 0px;
     display: inline;
@@ -35,8 +36,7 @@ body {
 /* radio-button */
 .radio-button-div {
     margin-top: 32px; 
-    display: flex; 
-    align-items: center;
+    @include yAlign(center);
 }
 input[type="radio" ]{ 
     accent-color: #1F7A54;
@@ -44,7 +44,7 @@ input[type="radio" ]{
     height: 24px;
 }
 .radio-button-div > label {
-    font-size: 16px;
+    font-size: $text-lg;
     line-height: 20px;
     margin-left:8px;
     color: #333333;
@@ -62,7 +62,7 @@ div > select {
     width: 100%;
 }
 .dropdown > label {
-    font-size: 12px;
+    font-size: $text-sm;
     line-height: 16px;
     letter-spacing: 0;
     color: #666666;
@@ -74,7 +74,7 @@ div > select {
     margin-top: 36px
 }
 .dropdown > select {
-    font-size: 16px;
+    font-size: $text-lg;
     line-height: 20px;
     color: #222222;
     letter-spacing: 0;
@@ -93,14 +93,14 @@ div > select {
     margin-top: 33px;
 }
 .input-box::placeholder {
-    font-size: 16px;
+    font-size: $text-lg;
     line-height: 20px;
 }
 .forgot-text {
     margin: 0; 
     margin-top: 5px;
     text-align: end;
-    font-size: 14px;
+    font-size: $text-base;
     line-height: 18px;
     color: #1F7A54;
 }
@@ -112,20 +112,18 @@ input[type="checkbox"]{
 }
 .checkbox-div {
     margin-top: 26px; 
-    display: flex; 
-    align-items: center; 
+    @include yAlign(center);
 }
 .checkbox-div > label {
     margin-left: 5px;
-    font-size: 16px;
+    font-size: $text-lg;
     line-height: 20px;
     color: #222222;
 }
 
 /* login-button */
 .login-button-div {
-    display: flex;
-    justify-content: center;
+    @include xAlign(center);
     margin-top: 34px;
 }
 .login-button {
@@ -134,43 +132,6 @@ input[type="checkbox"]{
     background-color: #3FD28B;
     box-shadow: 0px 3px 5px #0000003D;
     border: 0;
-    font-size: 14px;
+    font-size: $text-base;
     line-height: 18px;
-}
-
-/* footer */
-footer {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    flex-direction: column;
-    bottom: 0;
-}
-.footer-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.footer-bottom {
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #E0E1E1;
-}
-.footer-top > p > a {
-    color: #1F7A54;
-    font-size: 14px;
-    line-height: 18px;
-    letter-spacing: 0;
-}
-.footer-bottom > a > img {
-    height: 24px;
-    width: 90px;
-}
-.footer-bottom > p {
-    font-size: 12px;
-    line-height: 16px;
-    letter-spacing: 0;
 }

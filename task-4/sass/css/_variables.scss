@@ -1,0 +1,39 @@
+$primaryColor-100: #ffffff;
+$primaryColor-200: #EEEEEE;
+$primaryColor-300: #E0E1E1;
+$primaryColor-350: #8DDC97;
+$primaryColor-400: #3FD28B;
+$primaryColor-500: #31B9E4;
+$primaryColor-600: #1F7A54;
+$primaryColor-700: #2A7FF3;
+$primaryColor-750: #FFE4E6;
+$primaryColor-800: #D80000;
+$primaryColor-900: #666666;
+$primaryColor-1000: #686868;
+$primaryColor-1050: #222222;
+$primaryColor-1100: #000000;
+
+$text-xs: 10px;
+$text-sm: 12px;
+$text-base: 14px;
+$text-lg: 16px;
+$text-xl: 24px;
+
+@mixin xAlign($value) {
+    display: flex;
+    justify-content: $value;
+}
+@mixin yAlign($value) {
+    display: flex;
+    align-items: $value;
+}
+@mixin xyAlign($xValue,$yValue) {
+    display: flex;
+    justify-content: $xValue;
+    align-items: $yValue;
+}
+
+a {
+    text-decoration: none;
+}
+

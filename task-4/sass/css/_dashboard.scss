@@ -1,33 +1,35 @@
-body {
-    background-color: #EEEEEE;
+@import './_variables';
+@import './_navbar';
+@import './footer';
+
+.body-dashboard {
+    background-color: $primaryColor-200;
     font-family: Quicksand, sans-serif;
     font-weight: medium;
     margin: 0;
 }
+
 .main {
     padding-top: 80px;
     margin: auto 24px;
 }
-
 /* navtab */
 .navtab {
-    background-color: #8DDC97;
+    background-color: $primaryColor-350;
     height: 60px;
     display: grid;
     grid-template-columns: repeat(2,1fr);
 }
 .navtab-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include xyAlign(center,center);
     vertical-align: middle;
 }
 .navtab > .active {
-    border-bottom: 4px solid black;
+    border-bottom: 4px solid $primaryColor-1100;
 }
 .navtab-item > a {
-    color: #222222;
-    font-size: 16px;
+    color: $primaryColor-1050;
+    font-size: $text-lg;
     line-height: 20px;
     letter-spacing: 0;
 }
@@ -35,7 +37,7 @@ body {
     vertical-align: middle;
     margin: auto 8px;
     font-weight: bold;
-    font-size: 24px;
+    font-size: $text-xl;
     line-height: 28px;
     letter-spacing: 0;
 }
@@ -53,39 +55,37 @@ body {
     border-bottom: rgba(0, 0, 0, .12) solid 1px;
 }
 .sortbar-start {
-    display: flex;
-    align-items: center;
-    font-size: 12px;
+    @include yAlign(center);
+    font-size: $text-sm;
     line-height: 14px;
-    color: #686868;
+    color: $primaryColor-1000;
     font-weight: medium;
     letter-spacing: 0;   
     
 }
 .sortbar-end {
+    @include yAlign(start);
     flex-grow: 1;
-    display: flex;
     flex-flow: row-reverse wrap;
-    align-items: start;
-    font-size: 12px;
+    font-size: $text-sm;
     line-height: 16px;
-    color: #686868;
+    color: $primaryColor-1000;
 }
 .sortby-dropdown-box {
     border-width: 0 0 1px;
     border-color: rgba(0, 0, 0, .12);
     width: 165px;
-    font-size: 16px;
+    font-size: $text-lg;
     line-height: 20px;
     margin-left: 6px;
-    background-color: #EEEEEE;
+    background-color: $primaryColor-200;
 }
 .sortbar-end > span {
-    display: flex;
-    align-items: center;
+    @include yAlign(center);
+
 }
 .sortbar-end > span > .iconify {
-    color: #1F7A54;
+    color: $primaryColor-600;
     margin-left: 24px;
 }
 
@@ -98,17 +98,17 @@ body {
     grid-template-rows: auto;
 }
 .course-card {
-    background-color: #FFFFFF;
+    background-color: $primaryColor-100;
     display: flex;
     flex-direction: column;
 }
 .course-card > .badge {
     position: absolute;
-    background-color: #FFE4E6;
-    color: #D80000;
+    background-color: $primaryColor-750;
+    color: $primaryColor-800;
     font-family: Museo, sans;
     font-weight: medium;
-    font-size: 10px;
+    font-size: $text-xs;
     line-height: 16px;
     padding-left: 5px;
     padding-right: 5px;
@@ -131,15 +131,15 @@ body {
     margin: 0 auto;
     position: relative;
     vertical-align: top;
-    font-size: 12px;
+    font-size: $text-sm;
     line-height: 16px;
-    color: #666666;
+    color: $primaryColor-900;
 }
 .card-heading {
-    font-size: 16px !important;
+    font-size: $text-lg !important;
     line-height: 20px !important;
     font-weight: normal;
-    color: black !important;
+    color: $primaryColor-1100 !important;
 
 }
 .course-desc-row-1 {
@@ -152,72 +152,32 @@ body {
     margin-top: 13px !important;
 }
 .course-desc-row-1 > span > span {
-    color: #1F7A54;
+    color: $primaryColor-600;
 }
 .course-desc-row-2 > b {
-    color: black;
+    color: $primaryColor-1100;
 }
 .class-dropdown-box {
     border-width: 0 0 1px;
     border-color: rgba(0, 0, 0, .12);
     width: 264px;
-    font-size: 16px;
+    font-size: $text-lg;
     line-height: 20px;
-    color: black;
-    background-color: #FFFFFF;
+    color: $primaryColor-1100;
+    background-color: $primaryColor-100;
     margin-top: 16px;
 }
 .course-desc > p > .iconify {
     position: absolute;
     right: 0;
-
 }
 .course-card-bottom {
-    display: flex;
+    @include xAlign(space-around);
     vertical-align: bottom;
-    justify-content: space-around;
     margin-bottom: 9px;
 }
 .course-card-bottom > .iconify {
-    color: #1F7A54;
-}
-.course-1 {
-    background-color: blue;
-}
-.course-2 {
-    background-color: green;
-}
-.course-3 {
-    background-color: yellow;
-}
-
-/* footer */
-.footer-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.footer-bottom {
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #E0E1E1;
-}
-.footer-top > p > a {
-    color: #1F7A54;
-    font-size: 14px;
-    line-height: 18px;
-    letter-spacing: 0;
-}
-.footer-bottom > a > img {
-    height: 24px;
-    width: 90px;
-}
-.footer-bottom > p {
-    font-size: 12px;
-    line-height: 16px;
-    letter-spacing: 0;
+    color: $primaryColor-600;
 }
 
 /* media query */
@@ -230,16 +190,6 @@ body {
         grid-template-rows: repeat( 1fr);
     }
 }
-@media only screen and (min-width: 1030px) {
-    footer {
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        position: absolute;
-        flex-direction: column;
-        bottom: 0;
-    }
-}
 @media only screen and (max-width: 1030px) {
     .courses-container {
         width: auto !important;
@@ -248,13 +198,6 @@ body {
         grid-gap: 25px 24px;
         grid-template-columns: repeat(1,minmax(571px,1fr));
         grid-template-rows: repeat( 1fr);
-    }
-    footer {
-        display: flex;
-        justify-content: center;
-        position: relative;
-        flex-direction: column;
-        bottom: 0;
     }
 }
 @media only screen and (max-width: 614px) {
@@ -271,8 +214,7 @@ body {
         flex-direction: column;
     }
     .course-img {
-        display: flex;
+        @include xAlign(center);
         width: inherit;
-        justify-content: center;
     }
 }
