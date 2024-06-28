@@ -524,26 +524,23 @@ a {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
-
-.navtab-item {
+.navtab .navtab-item {
   display: flex;
   justify-content: center;
   align-items: center;
   vertical-align: middle;
 }
-
-.navtab > .active {
-  border-bottom: 4px solid #000000;
-}
-
-.navtab-item > a {
+.navtab .navtab-item a {
   color: #222222;
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0;
 }
-
-.navtab-item-digit {
+.navtab .navtab-item a .nav-tab-icon {
+  transform: scaleX(-1);
+  vertical-align: middle;
+}
+.navtab .navtab-item a .navtab-item-digit {
   vertical-align: middle;
   margin: auto 8px;
   font-weight: bold;
@@ -551,10 +548,8 @@ a {
   line-height: 28px;
   letter-spacing: 0;
 }
-
-.nav-tab-icon {
-  transform: scaleX(-1);
-  vertical-align: middle;
+.navtab .active {
+  border-bottom: 4px solid #000000;
 }
 
 /* navtab content */

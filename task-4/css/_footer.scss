@@ -1,0 +1,62 @@
+@import './variables';
+
+/* footer */
+footer {
+    .footer-login {
+        width: 100vw;
+        @include xAlign(center);
+        position: absolute;
+        flex-direction: column;
+        bottom: 0;
+    }
+    .footer-top {
+        @include xyAlign(center,center);
+        p > a {
+            color: $primaryColor-600;
+            font-size: $text-base;
+            line-height: 18px;
+            letter-spacing: 0;
+        }
+    }
+    .footer-bottom {
+        height: 40px;
+        @include xyAlign(center,center);
+        background-color: $primaryColor-300;
+        a > img {
+            height: 24px;
+            width: 90px;
+        }
+        p {
+            font-size: $text-sm;
+            line-height: 16px;
+            letter-spacing: 0;
+        }
+    }
+}
+
+
+@media only screen and (min-width: 1030px) {
+    .footer-dashboard {
+        width: 100vw;
+        @include xAlign(center);
+        position: absolute;
+        flex-direction: column;
+        bottom: 0;
+    }
+}
+@media only screen and (max-width: 1030px) {
+    .courses-container {
+        width: auto !important;
+        margin-top: 16px;
+        display: grid;
+        grid-gap: 25px 24px;
+        grid-template-columns: repeat(1,minmax(571px,1fr));
+        grid-template-rows: repeat( 1fr);
+    }
+    .footer-dashboard {
+        @include xAlign(center);
+        position: relative;
+        flex-direction: column;
+        bottom: 0;
+    }
+}
