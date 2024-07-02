@@ -51,7 +51,7 @@
             }
             .nav-link {
                 position: relative;
-                span {
+                .badge {
                     text-align: center;
                     height: inherit;
                     vertical-align: center;
@@ -95,6 +95,221 @@
         }
         .nav-item-active {
             border-bottom: 4px $primaryColor-100 solid;
+        }
+    }
+}
+
+// announcement
+.announcement-div {
+    position: absolute;
+    top: 41px;
+    right: 0px;
+    z-index: 200;
+    width: 315px;
+    height: 582px;
+    background-color: #FFFFFF;
+    display: none;
+    flex-direction: column-reverse;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 13, 0.8);
+    .announcement-top {
+        display: flex;
+        align-items: start;
+        height: inherit;
+        flex-direction: column;
+        overflow-y: scroll;
+        &::-webkit-scrollbar-track{
+            -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background-color: $primaryColor-100;
+        }
+        
+        &::-webkit-scrollbar{
+            width: 4px;
+            background-color: $primaryColor-100;
+        }
+        &::-webkit-scrollbar-thumb{
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+            background-color: rgba(0,0,0,.38);
+        }
+        .announcement-card {
+            width: 100%;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+            .announcement-content {
+                padding: 16px 16px 16px;
+            }
+            p{
+                color: rgba(110, 110, 110, 1);
+                position: relative;
+                margin: 0;
+                font-size: 12px;
+                .iconify-check {
+
+                    position: absolute;
+                    right: 0;
+                    color: $primaryColor-600;
+                }
+            }
+            .row-1 {
+            }
+            .row-2 {
+                margin-top: 8px;
+                font-size: 14px;
+                color: $primaryColor-1100;
+            }
+            .row-3 {
+                margin-top: 8px;
+            }
+            .row-4 {
+                margin-top: 8px;
+                .announcement-date {
+                    float: right;
+                }
+            }
+
+        }
+        .yellow-tint {
+            background-color: $primaryColor-250;
+        }
+    }
+    .announcement-bottom{
+        // position: fixed;
+        height: 48px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 13, 0.6);
+        button{
+            font-size: 14px;
+            color: #1F7A54;
+            border: 0;
+            &:nth-child(odd){
+                border-right: 1px solid black !important;
+                line-height: 10px;
+            }
+        }
+    }
+
+    
+}
+
+//notification
+.notification-div {
+    position: absolute;
+    top: 41px;
+    right: 0px;
+    z-index: 200;
+    width: 315px;
+    height: 534px;
+    background-color: #FFFFFF;
+    display: none;
+    flex-direction: column-reverse;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 13, 0.8);
+    .notification-top {
+        display: flex;
+        align-items: start;
+        height: inherit;
+        flex-direction: column;
+        overflow-y: scroll;
+        &::-webkit-scrollbar-track{
+            -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background-color: $primaryColor-100;
+        }
+        
+        &::-webkit-scrollbar{
+            width: 4px;
+            background-color: $primaryColor-100;
+        }
+        &::-webkit-scrollbar-thumb{
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+            background-color: rgba(0,0,0,.38);
+        }
+        .notification-card {
+            width: 100%;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+            .notification-content {
+                padding: 16px 16px 16px;
+            }
+            p{
+                color: rgba(110, 110, 110, 1);
+                position: relative;
+                margin: 0;
+                font-size: 12px;
+                .iconify-check {
+
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    color: $primaryColor-600;
+                }
+            }
+            .row-1 {
+                color: $primaryColor-1100;
+                font-size: 14px;
+
+            }
+            .row-2 {
+                margin-top: 8px;
+                span {
+                    color: $primaryColor-1100;
+                }
+            }
+
+            .row-3 {
+                margin-top: 8px;
+                .notification-date {
+                    float: right;
+                }
+            }
+
+        }
+        .yellow-tint {
+            background-color: $primaryColor-250;
+        }
+    }
+    .notification-bottom{
+        // position: fixed;
+        height: 48px;
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 13, 0.6);
+        button{
+            font-size: 14px;
+            color: #1F7A54;
+            border: 0;
+
+        }
+    }
+}
+
+.hamburger-div {
+    position: absolute;
+    top: 41px;
+    right: 0px;
+    z-index: 200;
+    width: 280px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 13, 0.8);
+    .hamburger-items{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        p {
+            color: $primaryColor-600;
+            font-size: 14px;
+            width: inherit;
+            padding: 15px 16px;
+            margin: 0;
+        }
+        .content-more-btn {
+            background-color: #F3F3F3;
+        }
+        .content-more {
+            background-color: #F3F3F3;
+            padding: 15px 16px 15px 32px ;
         }
     }
 }

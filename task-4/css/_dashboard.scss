@@ -62,31 +62,31 @@
         color: $primaryColor-1000;
         font-weight: medium;
         letter-spacing: 0;   
-        .sortbar-end {
-            @include yAlign(start);
-            flex-grow: 1;
-            flex-flow: row-reverse wrap;
-            font-size: $text-sm;
-            line-height: 16px;
-            color: $primaryColor-1000;
-            .sortby-dropdown-box {
-                border-width: 0 0 1px;
-                border-color: rgba(0, 0, 0, .12);
-                width: 165px;
-                font-size: $text-lg;
-                line-height: 20px;
-                margin-left: 6px;
-                background-color: $primaryColor-200;
-            }
-            span {
-                @include yAlign(center);
-                .iconify {
-                    color: $primaryColor-600;
-                    margin-left: 24px;
-                }
-            }
-            
+    }
+    .sortbar-end {
+        @include yAlign(start);
+        flex-grow: 1;
+        flex-flow: row-reverse wrap;
+        font-size: $text-sm;
+        line-height: 16px;
+        color: $primaryColor-1000;
+        .sortby-dropdown-box {
+            border-width: 0 0 1px;
+            border-color: rgba(0, 0, 0, .12);
+            width: 165px;
+            font-size: $text-lg;
+            line-height: 20px;
+            margin-left: 6px;
+            background-color: $primaryColor-200;
         }
+        span {
+            @include yAlign(center);
+            .iconify {
+                color: $primaryColor-600;
+                margin-left: 24px;
+            }
+        }
+        
     }
 }
 
