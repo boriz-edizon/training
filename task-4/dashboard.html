@@ -39,14 +39,14 @@
                   <a class="nav-link" href="#">ADMIN</a>
                 </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span class="iconify" data-icon="tabler:bell-ringing-filled" data-width="26" data-height="26"></span>
+                <a class="nav-link " href="#" onmouseover="MenuShow('.notification-div')" onmouseout="MenuShow('.notification-div')">
+                    <span class="iconify notification-icon" data-icon="tabler:bell-ringing-filled" data-width="26" data-height="26"></span>
                     <span class="badge">
                       <div>
                         2
                       </div>
                     </span>
-                    <div class="notification-div">
+                    <div class="notification-div" >
                       <div class="notification-bottom">
                         <button>SHOW ALL</button>
                       </div>
@@ -127,8 +127,8 @@
                 </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="iconify" data-icon="zondicons:announcement" data-width="26" data-height="26"></span>
+                  <a class="nav-link" href="#" onmouseover="MenuShow('.announcement-div')" onmouseout="MenuShow('.announcement-div')">
+                    <span class="iconify announcement-icon" data-icon="zondicons:announcement" data-width="26" data-height="26"></span>
                     <span class="badge">
                       <div>
                         1
@@ -223,25 +223,31 @@
                   </a>
               </li>
               <li class="nav-item hamburger">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="#"  onmouseover="MenuShow('.hamburger-div')" onmouseout="MenuShow('.hamburger-div')">
                   <span class="iconify" data-icon="radix-icons:hamburger-menu" data-width="26" data-height="26"></span>
                   <div class="hamburger-div">
-                    <div class="hamburger-items">
+                    <div class="hamburger-element">
                       <p>DASHBOARD</p>
                     </div>
-                    <div class="hamburger-items" style="color: #F3F3F3;">
-                      <p class="content-more-btn">CONTENT</p>
+                    <div class="hamburger-element" style="background-color: #F3F3F3;">
+                      <p class="content-more-btn">CONTENT
+                        <span class="iconify iconify-arrow" data-icon="mdi:keyboard-arrow-up" data-width="24" data-height="24"></span>
+                      </p>
                       <p class="content-more">COURSE CATALOG</p>
                     </div>
-                    <div class="hamburger-items">
-                      <p>USERS</p>
+                    <div class="hamburger-element">
+                      <p>USERS
+                        <span class="iconify iconify-arrow" data-icon="mdi:keyboard-arrow-down" data-width="24" data-height="24"></span>
+                      </p>
                     </div>
-                    <div class="hamburger-items">
-                      <p>REPORTS</p>
+                    <div class="hamburger-element">
+                      <p>REPORTS
+                        <span class="iconify iconify-arrow" data-icon="mdi:keyboard-arrow-down" data-width="24" data-height="24"></span>
+                      </p>
                     </div>
-                    <div class="hamburger-items">
+                    <div class="hamburger-element">
                       <p>ADMIN
-                        <span></span>
+                        <span class="iconify iconify-arrow" data-icon="mdi:keyboard-arrow-down" data-width="24" data-height="24"></span>
                       </p>
                     </div>
                   </div>

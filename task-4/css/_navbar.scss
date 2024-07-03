@@ -45,10 +45,15 @@
                 line-height: 14px;
                 letter-spacing: 0;
                 font-weight: normal;
+                &:hover{
+                    color: $primaryColor-100 !important;
+    
+                }
             }
             .active {
                 color: $primaryColor-100 !important;
             }
+
             .nav-link {
                 position: relative;
                 .badge {
@@ -86,12 +91,13 @@
                     background-color: $primaryColor-100;
                 }
             }
-            .hamburger {
-                display: none;
-            }
+
         }
         .hamburger-items {
             display: flex;
+        }
+        .hamburger {
+            display: none;
         }
         .nav-item-active {
             border-bottom: 4px $primaryColor-100 solid;
@@ -199,9 +205,9 @@
     right: 0px;
     z-index: 200;
     width: 315px;
+    display: none;
     height: 534px;
     background-color: #FFFFFF;
-    display: none;
     flex-direction: column-reverse;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 13, 0.8);
     .notification-top {
@@ -290,26 +296,32 @@
     z-index: 200;
     width: 280px;
     background-color: #FFFFFF;
-    display: flex;
+    display: none;
     flex-direction: column;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 13, 0.8);
-    .hamburger-items{
-        display: flex;
+    .hamburger-element{
+        display: contents !important;
         flex-direction: column;
-        width: 100%;
         p {
             color: $primaryColor-600;
             font-size: 14px;
-            width: inherit;
-            padding: 15px 16px;
+            display: flex;
+            align-items: center;
+            // width: inherit;
             margin: 0;
+            padding: 15px 16px;
+            .iconify-arrow {
+                position: absolute;
+                right: 24;
+                color: $primaryColor-600;
+            }
         }
         .content-more-btn {
             background-color: #F3F3F3;
         }
         .content-more {
-            background-color: #F3F3F3;
             padding: 15px 16px 15px 32px ;
+            background-color: #F3F3F3;
         }
     }
 }
@@ -317,9 +329,9 @@
 /* media query */
 @media only screen and (max-width: 1030px) {
     .hamburger {
-        display: flex;
+        display: flex !important;
     }
     .hamburger-items {
-        display: none;
+        display: none !important;
     }
 }

@@ -61,6 +61,9 @@ a {
   letter-spacing: 0;
   font-weight: normal;
 }
+.navbar-end .navbar-nav .nav-item a:hover {
+  color: #ffffff !important;
+}
 .navbar-end .navbar-nav .nav-item .active {
   color: #ffffff !important;
 }
@@ -101,11 +104,11 @@ a {
   color: #000000;
   background-color: #ffffff;
 }
-.navbar-end .navbar-nav .nav-item .hamburger {
-  display: none;
-}
 .navbar-end .navbar-nav .hamburger-items {
   display: flex;
+}
+.navbar-end .navbar-nav .hamburger {
+  display: none;
 }
 .navbar-end .navbar-nav .nav-item-active {
   border-bottom: 4px #ffffff solid;
@@ -201,9 +204,9 @@ a {
   right: 0px;
   z-index: 200;
   width: 315px;
+  display: none;
   height: 534px;
   background-color: #FFFFFF;
-  display: none;
   flex-direction: column-reverse;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 13, 0.8);
 }
@@ -285,37 +288,42 @@ a {
   z-index: 200;
   width: 280px;
   background-color: #FFFFFF;
-  display: flex;
+  display: none;
   flex-direction: column;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 13, 0.8);
 }
-.hamburger-div .hamburger-items {
-  display: flex;
+.hamburger-div .hamburger-element {
+  display: contents !important;
   flex-direction: column;
-  width: 100%;
 }
-.hamburger-div .hamburger-items p {
+.hamburger-div .hamburger-element p {
   color: #1F7A54;
   font-size: 14px;
-  width: inherit;
-  padding: 15px 16px;
+  display: flex;
+  align-items: center;
   margin: 0;
+  padding: 15px 16px;
 }
-.hamburger-div .hamburger-items .content-more-btn {
+.hamburger-div .hamburger-element p .iconify-arrow {
+  position: absolute;
+  right: 24;
+  color: #1F7A54;
+}
+.hamburger-div .hamburger-element .content-more-btn {
   background-color: #F3F3F3;
 }
-.hamburger-div .hamburger-items .content-more {
-  background-color: #F3F3F3;
+.hamburger-div .hamburger-element .content-more {
   padding: 15px 16px 15px 32px;
+  background-color: #F3F3F3;
 }
 
 /* media query */
 @media only screen and (max-width: 1030px) {
   .hamburger {
-    display: flex;
+    display: flex !important;
   }
   .hamburger-items {
-    display: none;
+    display: none !important;
   }
 }
 .body-login {
@@ -518,6 +526,9 @@ a {
   letter-spacing: 0;
   font-weight: normal;
 }
+.navbar-end .navbar-nav .nav-item a:hover {
+  color: #ffffff !important;
+}
 .navbar-end .navbar-nav .nav-item .active {
   color: #ffffff !important;
 }
@@ -558,11 +569,11 @@ a {
   color: #000000;
   background-color: #ffffff;
 }
-.navbar-end .navbar-nav .nav-item .hamburger {
-  display: none;
-}
 .navbar-end .navbar-nav .hamburger-items {
   display: flex;
+}
+.navbar-end .navbar-nav .hamburger {
+  display: none;
 }
 .navbar-end .navbar-nav .nav-item-active {
   border-bottom: 4px #ffffff solid;
@@ -658,9 +669,9 @@ a {
   right: 0px;
   z-index: 200;
   width: 315px;
+  display: none;
   height: 534px;
   background-color: #FFFFFF;
-  display: none;
   flex-direction: column-reverse;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 13, 0.8);
 }
@@ -742,37 +753,42 @@ a {
   z-index: 200;
   width: 280px;
   background-color: #FFFFFF;
-  display: flex;
+  display: none;
   flex-direction: column;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 13, 0.8);
 }
-.hamburger-div .hamburger-items {
-  display: flex;
+.hamburger-div .hamburger-element {
+  display: contents !important;
   flex-direction: column;
-  width: 100%;
 }
-.hamburger-div .hamburger-items p {
+.hamburger-div .hamburger-element p {
   color: #1F7A54;
   font-size: 14px;
-  width: inherit;
-  padding: 15px 16px;
+  display: flex;
+  align-items: center;
   margin: 0;
+  padding: 15px 16px;
 }
-.hamburger-div .hamburger-items .content-more-btn {
+.hamburger-div .hamburger-element p .iconify-arrow {
+  position: absolute;
+  right: 24;
+  color: #1F7A54;
+}
+.hamburger-div .hamburger-element .content-more-btn {
   background-color: #F3F3F3;
 }
-.hamburger-div .hamburger-items .content-more {
-  background-color: #F3F3F3;
+.hamburger-div .hamburger-element .content-more {
   padding: 15px 16px 15px 32px;
+  background-color: #F3F3F3;
 }
 
 /* media query */
 @media only screen and (max-width: 1030px) {
   .hamburger {
-    display: flex;
+    display: flex !important;
   }
   .hamburger-items {
-    display: none;
+    display: none !important;
   }
 }
 a {
@@ -983,6 +999,7 @@ footer .footer-bottom p {
 .courses-container .course-card .course-card-top .course-desc p .iconify {
   position: absolute;
   right: 0;
+  top: 0;
 }
 .courses-container .course-card .course-card-top .course-desc .card-heading {
   font-size: 16px !important;

@@ -1,3 +1,15 @@
+function MenuShow(icon) {
+    var element = document.querySelector(icon);
+    var display = element.style.display;
+    if (display == "flex") {
+      element.style.display = "none";
+    } else {
+      element.style.display = "flex";
+    }
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
     fetch("index.json")
         .then((response) => {
@@ -40,23 +52,22 @@ function populateCards(d) {
     const courseRow1 = document.createElement("p")
     courseRow1.className = "course-desc-row-1"
     courseRow1.innerHTML = `
-                  ${d.subject} | ${d.grade} <span>${d.addition}</span>
+                  <span>${d.subject} | ${d.grade} <span>${d.addition}</span></span>
                 `
 
     const courseRow2 = document.createElement("p")
     courseRow2.className = "course-desc-row-2"
     courseRow2.innerHTML = `
-                  <span><b>Units></b>
-                  `
+                    <span><b>${d.units}</b> Units</span> &nbsp
+                    <span><b>${d.lessons}</b> Lessons</span> &nbsp
+                    <span><b>${d.lessons}</b> Topics</span>                  
+                    `
 
     const dropdownBox = document.createElement("select")
     dropdownBox.className = "dropdown-box class-dropdown-box"
     dropdownBox.innerHTML =  `
-              <select name="course" id="course">
-                    <option value="course_name">Course Name</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
+                  <select class="dropdown-box class-dropdown-box" id="" name="">
+                    <option value="course-name">${d.courseName}</option>
                   </select>
             `
     const courseRow3 = document.createElement("p")
@@ -69,7 +80,7 @@ function populateCards(d) {
 
     courseDesc.appendChild(cardHeading)
     courseDesc.appendChild(courseRow1)
-    courseDesc.appendChild(courseRow2)
+    d.units && courseDesc.appendChild(courseRow2)
     courseDesc.appendChild(dropdownBox)
     d.info && courseDesc.appendChild(courseRow3)
 
