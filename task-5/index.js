@@ -5,7 +5,7 @@ const scroller = document.querySelector("#scroller");
 var width =80
 var height = 30
 
-var rows = 70;
+var rows = 30;
 var column = 40;
 let cells = []; 
 var selected = []
@@ -32,8 +32,8 @@ class cellStruct {
     }
     updateCell() {
         if(this.isClicked){
-            ctx.font = "16px serif";
-            ctx.fillText(this.text, this.xVal , this.yVal + this.height,this.width);
+            ctx.font = "20px serif";
+            ctx.fillText(this.text, this.xVal , this.yVal + this.height/1.5,this.width);
         }
     }
     selectCell() {
@@ -66,66 +66,67 @@ function createGrid() {
 // on load create canvas
 window.addEventListener("load", createGrid);
 
+// canvas.addEventListener("mousedown", function(e) { 
+//     var xInd = findX(0, cells[0].length - 1,e.offsetX)
+//     var yInd = findY(0, cells.length - 1,e.offsetY)
+//     mouseMove(xInd, yInd)
+// });
 
-canvas.addEventListener("mousedown", function(e) { 
-    var xInd = findX(0, cells[0].length - 1,e.offsetX)
-    var yInd = findY(0, cells.length - 1,e.offsetY)
-    editText(xInd, yInd)
-    mouseMove(xInd, yInd)
-});
-
+// canvas.addEventListener("click", (e) => {
+//     editText(findX(0, cells[0].length - 1,e.offsetX),findY(0, cells.length - 1,e.offsetY))
+// })
 // edit text
-function editText(xInd, yInd) {
-    clickedCell = cells[yInd][xInd]
-    clickedCell.isClicked = true
-    var cellInput = document.querySelector(".text");
-    cellInput.value = clickedCell.text
-    cellInput.style.display = "block";
-    cellInput.style.top = clickedCell.yVal + canvas.offsetTop;
-    cellInput.style.left = clickedCell.xVal + canvas.offsetLeft;
-    cellInput.style.height = clickedCell.height  ;
-    cellInput.style.width = clickedCell.width  ;
-    cellInput.focus()
-    
-    cellInput.onblur = () => {
-        clickedCell.text = cellInput.value
-        clickedCell.updateCell()
-    }
-}
+// function editText(xInd, yInd) {
+//     clickedCell = cells[yInd][xInd]
+//     clickedCell.isClicked = true
+//     var cellInput = document.querySelector(".text");
+//     cellInput.value = clickedCell.text
+//     cellInput.style.display = "block";
+//     cellInput.style.top = clickedCell.yVal + canvas.offsetTop;
+//     cellInput.style.left = clickedCell.xVal + canvas.offsetLeft;
+//     cellInput.style.height = clickedCell.height  ;
+//     cellInput.style.width = clickedCell.width  ;
+//     cellInput.focus();
+//     cellInput.onblur = () => {
+//         clickedCell.text = cellInput.value
+//         clickedCell.updateCell()
+//     }
+// }
 
 // selected cell
-const mouseMove = (xInd, yInd) => {
-    let newXind = -1;
-    let newYind = -1;
-    canvas.addEventListener("mousemove", move);
-    function move(e) {
+// const mouseMove = (xInd, yInd) => {
+//     let newXind = -1;
+//     let newYind = -1;
+
+//     canvas.addEventListener("mousemove", move);
+//     function move(e) {
          
-        var newXind1 = findX(0, cells[0].length - 1,e.offsetX)
-        var newYind1 = findY(0, cells.length - 1,e.offsetY)
-      if(newXind==newXind1 && newYind==newYind1){
-        return;
-      }
-      else{
-        newXind=newXind1;
-        newYind=newYind1;
-      }
-      for(let i=0;i<selected.length;i++){
-        selected[i].isSelected=false;
-        selected[i].selectCell();
-      }
-      selected=[];
-      for(let i=Math.min(yInd,newYind);i<=Math.max(yInd,newYind);i++){
-        for(let j=Math.min(xInd,newXind);j<=Math.max(xInd,newXind);j++){
-          cells[i][j].isSelected=true;
-          selected.push(cells[i][j]);
-          cells[i][j].selectCell();
-        }
-      }
-    }
-    canvas.addEventListener("mouseup", (e) => {
-        canvas.removeEventListener("mousemove", move);
-    });
-  };
+//         var newXind1 = findX(0, cells[0].length - 1,e.offsetX)
+//         var newYind1 = findY(0, cells.length - 1,e.offsetY)
+//       if(newXind==newXind1 && newYind==newYind1){
+//         return;
+//       }
+//       else{
+//         newXind=newXind1;
+//         newYind=newYind1;
+//       }
+//       for(let i=0;i<selected.length;i++){
+//         selected[i].isSelected=false;
+//         selected[i].selectCell();
+//       }
+//       selected=[];
+//       for(let i=Math.min(yInd,newYind);i<=Math.max(yInd,newYind);i++){
+//         for(let j=Math.min(xInd,newXind);j<=Math.max(xInd,newXind);j++){
+//           cells[i][j].isSelected=true;
+//           selected.push(cells[i][j]);
+//           cells[i][j].selectCell();
+//         }
+//       }
+//     }
+//     canvas.addEventListener("mouseup", (e) => {
+//         canvas.removeEventListener("mousemove", move);
+//     });
+//   };
 
 // x index
 function findX(frontCell, lastCell,mouseX) {

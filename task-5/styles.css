@@ -18,3 +18,40 @@ input {
     position: absolute;
     padding: 0;
 }
+
+  #percentage {
+    position: fixed;
+    top: 150px;
+    width: 60px;
+    left: 10px;
+    height: 20px;
+    background-color: lightgrey;
+    text-align: center;
+  }
+  
+  #track {
+    position: fixed;
+    z-index: 10000;
+    right: 0;
+    top: 0;
+    border-radius: 10px;
+    width: 15px;
+    background-color: #000000;
+    bottom: 0;
+    cursor: default;
+  }
+  
+  #slider {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 10%;
+    border-radius: 10px;
+    width: 15px;
+    background: linear-gradient(to right, #1e5799 0%, #89b3d3 51%, #1e5799 100%);
+  }
+
+  button {
+    position: absolute;
+    bottom: 0;
+  }
