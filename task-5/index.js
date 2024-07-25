@@ -2,8 +2,8 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const scroller = document.querySelector("#scroller");
 
-var width = 80;
-var height = 30;
+var width = 60;
+var height = 20;
 
 var rows = 100;
 var columns = 40;
@@ -27,21 +27,25 @@ function init() {
     }
 
     createCell() {
+      ctx.strokeStyle = "#E0E0E0";
       ctx.strokeRect(this.xVal, this.yVal, width, height);
+      ctx.font = "15px serif";
+      ctx.fillText(
+        this.text,
+        this.xVal,
+        this.yVal + this.height / 1.5,
+        this.width
+      )
     }
     resizeCell() {
       ctx.strokeRect(this.xVal, this.yVal, width, height);
     }
     updateCell() {
-      if (this.isClicked) {
-        ctx.font = "20px serif";
-        ctx.fillText(
-          this.text,
-          this.xVal,
-          this.yVal + this.height / 1.5,
-          this.width
-        );
-      }
+      // if (true) {
+      
+
+      //   );
+      // }
     }
     selectCell() {
       if (this.isSelected) {
@@ -66,8 +70,9 @@ function init() {
         if (i == 0) {
           cWidthPrefixSum.push(cWidthPrefixSum[i] + width);
         }
-        cell = new cellStruct(0 + j * (width ), 0 + i * (height ), width, height, `${i} ${j}`, false, 0);
+        cell = new cellStruct(1 + j * (width )-0.5, 1 + i * (height )-0.5, width, height, `${i} ${j}`, false, 0);
         cell.createCell();
+        cell.updateCell();
         cells[i].push(cell);
       }
     }
