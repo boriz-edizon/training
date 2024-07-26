@@ -12,52 +12,54 @@ var selected = [];
 var cWidthPrefixSum = [];
 let rHeightPrefixSum = [];
 
-function init() {
+class cellStruct {
+  constructor(xVal, yVal, width, height, text, isClicked, isSelected) {
+    this.xVal = xVal;
+    this.yVal = yVal;
+    this.width = width;
+    this.height = height;
+    this.isClicked = isClicked;
+    this.isSelected = isSelected;
+    this.text = text;
+  }
 
-  // cell structure
-  class cellStruct {
-    constructor(xVal, yVal, width, height, text, isClicked, isSelected) {
-      this.xVal = xVal;
-      this.yVal = yVal;
-      this.width = width;
-      this.height = height;
-      this.isClicked = isClicked;
-      this.isSelected = isSelected;
-      this.text = text;
-    }
-
-    createCell() {
-      ctx.strokeStyle = "#E0E0E0";
-      ctx.strokeRect(this.xVal, this.yVal, width, height);
-      ctx.font = "15px serif";
+  createCell() {
+    ctx.strokeStyle = "#E0E0E0";
+    ctx.strokeRect(this.xVal, this.yVal, width, height);
+    ctx.font = "20px serif";
+    ctx.fillText(
+      this.text,
+      this.xVal,
+      this.yVal + this.height / 1.5,
+      this.width
+    );
+  }
+  resizeCell() {
+    ctx.strokeRect(this.xVal, this.yVal, width, height);
+  }
+  updateCell() {
+    if (this.isClicked) {
+      ctx.font = "20px serif";
       ctx.fillText(
         this.text,
         this.xVal,
         this.yVal + this.height / 1.5,
         this.width
-      )
-    }
-    resizeCell() {
-      ctx.strokeRect(this.xVal, this.yVal, width, height);
-    }
-    updateCell() {
-      // if (true) {
-      
-
-      //   );
-      // }
-    }
-    selectCell() {
-      if (this.isSelected) {
-        ctx.fillStyle = "rgba(0, 100, 255, 0.3)";
-        ctx.fillRect(this.xVal, this.yVal, width, height);
-      } else {
-        ctx.clearRect(this.xVal, this.yVal, width, height);
-        ctx.strokeRect(this.xVal, this.yVal, width, height);
-      }
+      );
     }
   }
+  selectCell() {
+    if (this.isSelected) {
+      ctx.fillStyle = "rgba(0, 100, 255, 0.3)";
+      ctx.fillRect(this.xVal, this.yVal, width, height);
+    } else {
+      ctx.clearRect(this.xVal, this.yVal, width, height);
+      ctx.strokeRect(this.xVal, this.yVal, width, height);
+    }
+  }
+}
 
+function init() {
   // create canvas
   rHeightPrefixSum.push(0);
   cWidthPrefixSum.push(0);
@@ -68,9 +70,9 @@ function init() {
       cells[i] = [];
       for (let j = 0; j < columns; j++) {
         if (i == 0) {
-          cWidthPrefixSum.push(cWidthPrefixSum[i] + width);
+          cWidthPrefixSum.push(cWidthPrefixSum[j] + width);
         }
-        cell = new cellStruct(1 + j * (width )-0.5, 1 + i * (height )-0.5, width, height, `${i} ${j}`, false, 0);
+        cell = new cellStruct(1 + j * (width )+0.5, 1 + i * (height )+0.5, width, height, `${i} ${j}`, false, 0);
         cell.createCell();
         cell.updateCell();
         cells[i].push(cell);
