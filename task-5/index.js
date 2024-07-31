@@ -1,60 +1,80 @@
+const div = document.getElementById("main-area");
+
+// top canvas
+const topCanvas = document.getElementById("horizontal");
+const topCtx  = topCanvas.getContext("2d");
+topCanvas.height = 20;
+topCanvas.width = div.clientWidth-60;
+
+// side canvas
+const sideCanvas = document.getElementById("vertrical");
+const sideCtx = sideCanvas.getContext("2d");
+sideCanvas.height =  div.clientHeight - 20;
+sideCanvas.width = 60;
+
+// main canvas
 const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const mainCtx = canvas.getContext("2d");
+canvas.height = div.clientHeight - 35;
+canvas.width = div.clientWidth - 80
+
 const scroller = document.querySelector("#scroller");
 
 var width = 60;
 var height = 20;
 
 var rows = 100;
-var columns = 40;
+var columns = 60;
 let cells = [];
+let topCells = [];
+let sideCells = [];
 var selected = [];
 var cWidthPrefixSum = [];
 let rHeightPrefixSum = [];
 
 class cellStruct {
-  constructor(xVal, yVal, width, height, text, isClicked, isSelected) {
+  constructor(xVal, yVal, width, height, value, isClicked, isSelected, ctx) {
     this.xVal = xVal;
     this.yVal = yVal;
     this.width = width;
     this.height = height;
     this.isClicked = isClicked;
     this.isSelected = isSelected;
-    this.text = text;
+    this.value = value;
+    this.ctx = ctx
   }
 
   createCell() {
-    ctx.strokeStyle = "#E0E0E0";
-    ctx.strokeRect(this.xVal, this.yVal, width, height);
-    ctx.font = "20px serif";
-    ctx.fillText(
-      this.text,
-      this.xVal,
-      this.yVal + this.height / 1.5,
+    this.ctx.strokeStyle = "#E0E0E0";
+    this.ctx.strokeRect(this.xVal, this.yVal, width, height);
+    this.ctx.font = "20px serif";
+    this.ctx.fillStyle = "#000",
+    this.ctx.fillText(
+      this.value,
+      this.xVal + 12,
+      this.yVal + this.height / 1.2,
       this.width
     );
+    if(this.isSelected){
+      this.selectCell();
+    }
   }
   resizeCell() {
-    ctx.strokeRect(this.xVal, this.yVal, width, height);
+    this.ctx.strokeRect(this.xVal, this.yVal, width, height);
   }
   updateCell() {
     if (this.isClicked) {
-      ctx.font = "20px serif";
-      ctx.fillText(
-        this.text,
-        this.xVal,
-        this.yVal + this.height / 1.5,
-        this.width
-      );
+      this.ctx.clearRect(this.xVal, this.yVal, width, height)
+      this.createCell()
     }
   }
   selectCell() {
     if (this.isSelected) {
-      ctx.fillStyle = "rgba(0, 100, 255, 0.3)";
-      ctx.fillRect(this.xVal, this.yVal, width, height);
+      this.ctx.fillStyle = 'rgba(0, 100, 255, 0.3)';
+      this.ctx.fillRect(this.xVal, this.yVal, width, height);
     } else {
-      ctx.clearRect(this.xVal, this.yVal, width, height);
-      ctx.strokeRect(this.xVal, this.yVal, width, height);
+      this.ctx.clearRect(this.xVal, this.yVal, width, height)
+      this.createCell()
     }
   }
 }
@@ -65,6 +85,21 @@ function init() {
   cWidthPrefixSum.push(0);
 
   function createGrid() {
+
+    // Top Canvas
+    for(let j = 0; j < columns; j++) {
+      cell = new cellStruct(1 + j * (width )+0.5, 1 , width, height, `${getColumnName(j+1)}`, false, 0, topCtx);
+      cell.createCell();
+      topCells.push(cell)
+    }
+
+    // Side Canvas
+    for (let i = 0; i < rows; i++) {
+      cell = new cellStruct(1, 1 + i * (height )+0.5 , width, height, `${i}`, false, 0, sideCtx);
+      cell.createCell()
+      sideCells.push(cell)
+    }
+    // Main Canvas
     for (let i = 0; i < rows; i++) {
       rHeightPrefixSum.push(rHeightPrefixSum[i] + height);
       cells[i] = [];
@@ -72,123 +107,27 @@ function init() {
         if (i == 0) {
           cWidthPrefixSum.push(cWidthPrefixSum[j] + width);
         }
-        cell = new cellStruct(1 + j * (width )+0.5, 1 + i * (height )+0.5, width, height, `${i} ${j}`, false, 0);
+        cell = new cellStruct(1 + j * (width )+0.5, 1 + i * (height )+0.5, width, height, `${i} ${j}`, false, 0, mainCtx);
         cell.createCell();
-        cell.updateCell();
         cells[i].push(cell);
       }
     }
+
   }
+
+  function getColumnName(num){
+    var s = '', t;
+  
+    while (num > 0) {
+      t = (num - 1) % 26;
+      s = String.fromCharCode(65 + t) + s;
+      num = (num - t)/26 | 0;
+    }
+    return s || undefined;
+  }
+  
   createGrid();
 }
 
 // on load create canvas
 window.addEventListener("load", init);
-
-
-canvas.addEventListener("mousedown", function(e) {
-    var xInd = findX(0, cells[0].length - 1,e.offsetX)
-    var yInd = findY(0, cells.length - 1,e.offsetY)
-    mouseMove(xInd, yInd)
-});
-
-canvas.addEventListener("mouseup", (e) => {
-  var xInd = findX(0, cells[0].length - 1,e.offsetX)
-  var yInd = findY(0, cells.length - 1,e.offsetY)
-    
-  editText(xInd, yInd)
-})
-
-canvas.addEventListener("click", (e) => {
-  var xInd = findX(0, cells[0].length - 1,e.offsetX)
-  var yInd = findY(0, cells.length - 1,e.offsetY)
-  for(let i=0;i<selected.length;i++){
-    selected[i].isSelected=false;
-    selected[i].selectCell();
-  }
-  editText(xInd, yInd)
-})
-
-
-// edit text
-function editText(xInd, yInd) {
-    clickedCell = cells[yInd][xInd]
-    clickedCell.isClicked = true
-    var cellInput = document.querySelector(".text");
-    cellInput.value = clickedCell.text
-    cellInput.style.display = "block";
-    cellInput.style.top = clickedCell.yVal + canvas.offsetTop;
-    cellInput.style.left = clickedCell.xVal + canvas.offsetLeft;
-    cellInput.style.height = clickedCell.height  ;
-    cellInput.style.width = clickedCell.width  ;
-    cellInput.focus();
-    cellInput.onblur = () => {
-        clickedCell.text = cellInput.value
-        clickedCell.updateCell()
-    }
-}
-
-// selected cell
-const mouseMove = (xInd, yInd) => {
-    let newXind = -1;
-    let newYind = -1;
-
-    canvas.addEventListener("mousemove", move);
-    function move(e) {
-
-        var newXind1 = findX(0, cells[0].length - 1,e.offsetX)
-        var newYind1 = findY(0, cells.length - 1,e.offsetY)
-        if(newXind==newXind1 && newYind==newYind1){
-          return;
-        }
-        else{
-          newXind=newXind1;
-          newYind=newYind1;
-        }
-        for(let i=0;i<selected.length;i++){
-          selected[i].isSelected=false;
-          selected[i].selectCell();
-        }
-        selected=[];
-        for(let i=Math.min(yInd,newYind);i<=Math.max(yInd,newYind);i++){
-          for(let j=Math.min(xInd,newXind);j<=Math.max(xInd,newXind);j++){
-            cells[i][j].isSelected=true;
-            selected.push(cells[i][j]);
-            cells[i][j].selectCell();
-          }
-        }
-    }
-    canvas.addEventListener("mouseup", (e) => {
-        canvas.removeEventListener("mousemove", move);
-    });
-  };
-
-// x index
-function findX(frontCell, lastCell, mouseX) {
-  var midindex = Math.floor((frontCell + lastCell) / 2);
-  if (
-    cells[0][midindex].xVal <= mouseX &&
-    cells[0][midindex].xVal + cells[0][midindex].width >= mouseX
-  ) {
-    return midindex;
-  } else if (cells[0][midindex].xVal > mouseX) {
-    return findX(frontCell, midindex - 1, mouseX);
-  } else {
-    return findX(midindex + 1, lastCell, mouseX);
-  }
-}
-
-// y index
-function findY(frontCell, lastCell, mouseY) {
-  var midindex = Math.floor((frontCell + lastCell) / 2);
-  if (
-    cells[midindex][0].yVal <= mouseY &&
-    cells[midindex][0].yVal + cells[midindex][0].height >= mouseY
-  ) {
-    return midindex;
-  } else if (cells[midindex][0].yVal > mouseY) {
-    return findY(frontCell, midindex - 1, mouseY);
-  } else {
-    return findY(midindex + 1, lastCell, mouseY);
-  }
-}
