@@ -1,17 +1,15 @@
 function init() {
     var containerHeight = rHeightPrefixSum[rHeightPrefixSum.length-1]
-    var containerWidth = cWidthPrefixSum[cWidthPrefixSum.length-1]   
+    var containerWidth = cWidthPrefixSum[cWidthPrefixSum.length-1] 
+
     var sliderY = document.getElementById("slider-y")
     var trackY = document.getElementById("track-y");
     var sliderPercentageY = null;
-    var shiftTopY = 0;
-    var shiftBottomY = canvas.height;
 
     var sliderX = document.getElementById("slider-x")
     var trackX = document.getElementById("track-x");
     var sliderPercentageX = null;
-    var shiftLeftX = 0;
-    var shiftRightX = canvas.width
+
     
     var getAtInt = function getAtInt(obj, attrib) {
         return parseInt(getComputedStyle(obj, null)[attrib], 10);
@@ -34,11 +32,12 @@ function init() {
     )
     
     function yScroll(e){
-        e.preventDefault()
         sliderY.proposedNewPosY = e.pageY - getAtInt(trackY, "top") - mouseDownYOffset;
         if (sliderY.proposedNewPosY < 0) {
             sliderY.style.top = 0;
-            redraw(0,canvas.height)
+            shiftTopY = 0
+            shiftBottomY = canvas.height
+            redraw(1)
         } else if (sliderY.proposedNewPosY > 0.8 * (getAtInt(trackY, "height") - getAtInt(sliderY, "height")) ){
             if(getAtInt(sliderY,"height") > 40) {
                 sliderY.style.height = ((canvas.height * canvas.height) / containerHeight) + "px";
@@ -56,11 +55,12 @@ function init() {
     }
 
     function xScroll(e){
-        e.preventDefault()
         sliderX.proposedNewPosX = e.pageX - getAtInt(trackX, "left") - mouseDownXOffset;
         if (sliderX.proposedNewPosX < 0) {
             sliderX.style.left = 0;
-            redraw(0,canvas.height)
+            shiftLeftX = 0;
+            shiftRightX = canvas.width
+            redraw()
         } else if (sliderX.proposedNewPosX > 0.8 * (getAtInt(trackX, "width") - getAtInt(sliderX, "width")) ){
             if(getAtInt(sliderX,"width") > 40) {
                 sliderX.style.width = ((canvas.width * canvas.width) / containerWidth) + "px";
@@ -116,24 +116,6 @@ function init() {
         }
 
         function addRows() {
-            // console.log(cells)
-            // console.log(rHeightPrefixSum)
-
-            // for (let i = ; i <   ; i++) {
-            //     // rHeightPrefixSum.push(rHeightPrefixSum[rHeightPrefixSum.length -1 ] + height);
-            //     // x = cells.length
-            //     cells[x] = [];
-            //     for (let j = 0; j < 28; j++) {
-            //       if (i == 0) {
-            //         // cWidthPrefixSum.push(cWidthPrefixSum[cWidthPrefixSum.length -1 ] + width);
-            //       }
-            //     //   cell = new cellStruct(1, 1, width, height, `${x} ${j}`, false, 0,mainCtx);
-            //       cells[x].push(cell);
-            //     }
-            //     // cell = new cellStruct(1, 1, width, height, `${x}`, false, 0,sideCtx);
-            //     // sideCells.push(cell)
-            // }
-
             currentRowLength = rHeightPrefixSum.length
             currentColumnLength = cWidthPrefixSum.length 
             for(let i =0; i<20;i++){
@@ -196,6 +178,5 @@ function cellYIndex(num){
         if(num >= rHeightPrefixSum[i-1] && num < rHeightPrefixSum[i]) return i
     }
 }
-
 
 window.addEventListener("load", init)

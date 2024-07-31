@@ -1,41 +1,23 @@
 canvas.addEventListener("mousedown", function(e) {
     var xInd = findX(0, cells[0].length - 1,e.offsetX)
     var yInd = findY(0, cells.length - 1,e.offsetY)
+    editValue(xInd, yInd)
     mouseMove(xInd, yInd)
 });
 
-canvas.addEventListener("mouseup", (e) => {
-  var xInd = findX(0, cells[0].length - 1,e.offsetX)
-  var yInd = findY(0, cells.length - 1,e.offsetY)
-    })
+// canvas.addEventListener("mouseup", (e) => {
+//   var xInd = findX(0, cells[0].length - 1,e.offsetX)
+//   var yInd = findY(0, cells.length - 1,e.offsetY)
+//     })
 
 canvas.addEventListener("dblclick", (e) => {
   var xInd = findX(0, cells[0].length - 1,e.offsetX)
   var yInd = findY(0, cells.length - 1,e.offsetY)
-  for(let i=0;i<selected.length;i++){
-    selected[i].isSelected=false;
-    selected[i].selectCell();
+  for(let i=0;i<selectedMain.length;i++){
+    selectedMain[i].isSelected=false;
+    selectedMain[i].selectCell();
   }
-  editValue(xInd, yInd)
 })
-
-// edit text
-function editValue(xInd, yInd) {
-    clickedCell = cells[yInd][xInd]
-    clickedCell.isClicked = true
-    var cellInput = document.querySelector(".text");
-    cellInput.value = clickedCell.value
-    cellInput.style.display = "block";
-    cellInput.style.top = clickedCell.yVal + canvas.offsetTop;
-    cellInput.style.left = clickedCell.xVal + canvas.offsetLeft;
-    cellInput.style.height = clickedCell.height  ;
-    cellInput.style.width = clickedCell.width  ;
-    cellInput.focus();
-    cellInput.onblur = () => {
-        clickedCell.value = cellInput.value
-        clickedCell.updateCell()
-    }
-}
 
 // selected cell
 const mouseMove = (xInd, yInd) => {
@@ -54,50 +36,43 @@ const mouseMove = (xInd, yInd) => {
           newXind=newXind1;
           newYind=newYind1;
         }
-        for(let i=0;i<selected.length;i++){
-          selected[i].isSelected=false;
-          selected[i].selectCell();
-        }
-        selected=[];
+        removeElements(selectedMain)
+        removeElements(selectedSide)
+        removeElements(selectedTop)
+
+        selectedMain=[];
+        selectedSide=[]
+        selectedTop= []
+
         for(let i=Math.min(yInd,newYind);i<=Math.max(yInd,newYind);i++){
+          sideCells[i].isSelected = true
+          selectedSide.push(sideCells[i])
+          sideCells[i].selectCell()
           for(let j=Math.min(xInd,newXind);j<=Math.max(xInd,newXind);j++){
+            if(i===Math.min(yInd,newYind)){
+              topCells[j].isSelected=true;
+              selectedTop.push(topCells[j]);
+              topCells[j].selectCell();
+            }
             cells[i][j].isSelected=true;
-            selected.push(cells[i][j]);
+            selectedMain.push(cells[i][j]);
             cells[i][j].selectCell();
           }
         }
+
+        mainCtx.beginPath();
+        mainCtx.moveTo(cells[Math.min(xInd,newXind)][Math.min(yInd,newYind)].xVal, cells[Math.min(xInd,newXind)][Math.min(yInd,newYind)].yVal);
+        mainCtx.lineTo(cells[Math.min(xInd,newXind)][Math.min(yInd,newYind)].xVal + cells[Math.min(xInd,newXind)][Math.min(yInd,newYind)].width, cells[Math.min(xInd,newXind)][Math.max(yInd,newYind)].yVal);
+        mainCtx.stroke();
+    }
+
+    function removeElements(arr){
+      for(let i = 0; i<arr.length; i++){
+        arr[i].isSelected=false;
+        arr[i].selectCell();
+      }
     }
     window.addEventListener("mouseup", (e) => {
         canvas.removeEventListener("mousemove", move);
     });
   };
-
-// x index
-function findX(frontCell, lastCell, mouseX) {
-  var midindex = Math.floor((frontCell + lastCell) / 2);
-  if (
-    cells[0][midindex].xVal <= mouseX &&
-    cells[0][midindex].xVal + cells[0][midindex].width >= mouseX
-  ) {
-    return midindex;
-  } else if (cells[0][midindex].xVal > mouseX) {
-    return findX(frontCell, midindex - 1, mouseX);
-  } else {
-    return findX(midindex + 1, lastCell, mouseX);
-  }
-}
-
-// y index
-function findY(frontCell, lastCell, mouseY) {
-  var midindex = Math.floor((frontCell + lastCell) / 2);
-  if (
-    cells[midindex][0].yVal <= mouseY &&
-    cells[midindex][0].yVal + cells[midindex][0].height >= mouseY
-  ) {
-    return midindex;
-  } else if (cells[midindex][0].yVal > mouseY) {
-    return findY(frontCell, midindex - 1, mouseY);
-  } else {
-    return findY(midindex + 1, lastCell, mouseY);
-  }
-}

@@ -28,9 +28,16 @@ var columns = 60;
 let cells = [];
 let topCells = [];
 let sideCells = [];
-var selected = [];
+var selectedMain = [];
+var selectedTop = []
+var selectedSide = []
 var cWidthPrefixSum = [];
 let rHeightPrefixSum = [];
+
+var shiftTopY = 0;
+var shiftBottomY = canvas.height;
+var shiftLeftX = 0;
+var shiftRightX = canvas.width
 
 class cellStruct {
   constructor(xVal, yVal, width, height, value, isClicked, isSelected, ctx) {
@@ -43,24 +50,15 @@ class cellStruct {
     this.value = value;
     this.ctx = ctx
   }
-
   createCell() {
     this.ctx.strokeStyle = "#E0E0E0";
     this.ctx.strokeRect(this.xVal, this.yVal, width, height);
     this.ctx.font = "20px serif";
     this.ctx.fillStyle = "#000",
-    this.ctx.fillText(
-      this.value,
-      this.xVal + 12,
-      this.yVal + this.height / 1.2,
-      this.width
-    );
+    this.ctx.fillText(this.value, this.xVal + 12, this.yVal + this.height / 1.2, this.width);
     if(this.isSelected){
       this.selectCell();
     }
-  }
-  resizeCell() {
-    this.ctx.strokeRect(this.xVal, this.yVal, width, height);
   }
   updateCell() {
     if (this.isClicked) {
@@ -70,7 +68,7 @@ class cellStruct {
   }
   selectCell() {
     if (this.isSelected) {
-      this.ctx.fillStyle = 'rgba(0, 100, 255, 0.3)';
+      this.ctx.fillStyle = 'rgba(19, 126, 67, 0.1)';
       this.ctx.fillRect(this.xVal, this.yVal, width, height);
     } else {
       this.ctx.clearRect(this.xVal, this.yVal, width, height)
@@ -80,7 +78,6 @@ class cellStruct {
 }
 
 function init() {
-  // create canvas
   rHeightPrefixSum.push(0);
   cWidthPrefixSum.push(0);
 
@@ -112,12 +109,10 @@ function init() {
         cells[i].push(cell);
       }
     }
-
   }
 
   function getColumnName(num){
     var s = '', t;
-  
     while (num > 0) {
       t = (num - 1) % 26;
       s = String.fromCharCode(65 + t) + s;

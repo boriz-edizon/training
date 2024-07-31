@@ -7,40 +7,16 @@ body {
   display: flex;
   padding-left: 15px;
 }
-#header > p {
-  margin-right: 30px;
-}
+
 #main-area {
   height: 90vh;
   overflow: hidden;
   position: relative;
-
 }
-/* #main-area > input {
-  display: none;
-  position: absolute;
-  padding: 0px;
-  border: 0px;
-} */
-
 #verticall-div,#horizontal-div{
   background-color: #F5F5F5;
   position: absolute;
 }
-#verticall-div ,.scrollbar.vertical {
-  width: 8px;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: 10%;
-}
-
-/* #horizontal-div,.scrollbar.horizontal {
-  height: 8px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-} */
 #row-1{
   height: 20px;
   display: flex;
@@ -60,23 +36,18 @@ body {
 }
 
 
-
-canvas {
-    /* margin-top: 5vh;
-    margin-left: 2vw; */
-}
-/* .excel {
-    margin-top: 10vh;
-    margin-left: 2vw;
-    position: relative;
-    width: fit-content;
+.excel {
     cursor: cell;
-} */
+}
 input {
     display: none;
     position: absolute;
     padding: 0;
+    border: none
 }  
+input:focus{
+  border: none
+}
 #track-y {
   position: absolute;
   z-index: 10001;
