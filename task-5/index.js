@@ -16,7 +16,7 @@ sideCanvas.width = 60;
 const canvas = document.getElementById("canvas");
 const mainCtx = canvas.getContext("2d");
 canvas.height = div.clientHeight - 35;
-canvas.width = div.clientWidth - 80
+canvas.width = div.clientWidth - 60
 
 const scroller = document.querySelector("#scroller");
 
@@ -53,7 +53,7 @@ class cellStruct {
   createCell() {
     this.ctx.strokeStyle = "#E0E0E0";
     this.ctx.strokeRect(this.xVal, this.yVal, width, height);
-    this.ctx.font = "20px serif";
+    this.ctx.font = "14px serif";
     this.ctx.fillStyle = "#000",
     this.ctx.fillText(this.value, this.xVal + 12, this.yVal + this.height / 1.2, this.width);
     if(this.isSelected){
@@ -69,6 +69,15 @@ class cellStruct {
   selectCell() {
     if (this.isSelected) {
       this.ctx.fillStyle = 'rgba(19, 126, 67, 0.1)';
+      this.ctx.fillRect(this.xVal, this.yVal, width, height);
+    } else {
+      this.ctx.clearRect(this.xVal, this.yVal, width, height)
+      this.createCell()
+    }
+  }
+  highlightCell() {
+    if (this.isSelected) {
+      this.ctx.fillStyle = 'rgba(19, 126, 67, 0.2)';
       this.ctx.fillRect(this.xVal, this.yVal, width, height);
     } else {
       this.ctx.clearRect(this.xVal, this.yVal, width, height)
