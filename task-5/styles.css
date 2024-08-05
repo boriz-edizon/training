@@ -33,9 +33,7 @@ body {
 #corner{
   width: 61px;
 }
-
-
-.excel {
+#main-canvas {
     cursor: cell;
 }
 input {
@@ -72,13 +70,14 @@ input:focus{
 }
 
 #track-x {
-  position: relative;
+  position: absolute;
   z-index: 10000;
   border-radius: 10px;
   height: 15px;
   background-color: #E7E7E7;
   bottom: 0;
   cursor: default;
+  width: 100vw;
 }
 
 #slider-x {
@@ -91,7 +90,6 @@ input:focus{
   background: #8A8A8A;
   transition: 0.15s all;
 }
-
 button {
   position: absolute;
   bottom: 0;

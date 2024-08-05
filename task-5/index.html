@@ -18,17 +18,16 @@
 
         <input type="text" name="content" id="content" >
         <div id="row-1">
-          <div id="corner" style="border: 1px solid black"></div>
-          <canvas id="horizontal" style="border: 0px solid red"></canvas>
+          <canvas id="" width="60" height="20"></canvas>
+          <canvas id="top-canvas"></canvas>
         </div>
 
         <div id="row-2">
-          <canvas id="vertrical" style="border: 0px solid red">
-          </canvas>
+          <canvas id="side-canvas"></canvas>
 
-          <div class="excel">
+          <div class="spreadsheet">
             <input type="text" class="text">
-            <canvas id="canvas"></canvas>
+            <canvas id="main-canvas"></canvas>
             <div id='track-y'>
               <div id='slider-y'>
               </div>
@@ -36,17 +35,13 @@
             <div id='track-x'>
               <div id='slider-x'>
               </div>
-            </div>      
-          </div>
-  
+            </div>   
+          </div>  
+        </div>
+
       </div>
 
-    <script src="./index.js"></script>
-    <script src="./findCell.js"></script>
-    <script src="./input.js"></script>
-    <script src="./scrollbar.js"></script>
-    <script src="./select.js"></script>
-    <script src="./resize.js"></script>
+      <script type="module" src="./excel.js"></script>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 // x index
-function cellXIndex(num){
-  for(var i = 0; i < cWidthPrefixSum.length; i++){
-      if(num >= cWidthPrefixSum[i-1] && num < cWidthPrefixSum[i]) return i
+function cellXIndex(num) {
+  for (var i = 0; i < cWidthPrefixSum.length; i++) {
+    if (num >= cWidthPrefixSum[i - 1] && num < cWidthPrefixSum[i]) return i;
   }
 }
 // binary search
@@ -20,11 +20,7 @@ function cellXIndex(num){
 //   }
 
 // y index
-function cellYIndex(num){
-  for(var i = 0; i < rHeightPrefixSum.length; i++){
-      if(num >= rHeightPrefixSum[i-1] && num < rHeightPrefixSum[i]) return i
-  }
-}
+
 //binary search
 // function findY(frontCell, lastCell, mouseY) {
 //   var midindex = Math.floor((frontCell + lastCell) / 2);
