@@ -2,31 +2,45 @@ import { cellStruct } from "./cell.js";
 
 export class topGrid {
     constructor(dimension) {
-        this.columns = dimension.columns;
-        this.height = dimension.height;
-        this.width = dimension.width;
-
-        this.cWidthPrefixSum = dimension.cWidthPrefixSum;
-
-        this.selectedTop = dimension.selectedTop;
+        this.dimension = dimension
 
         this.topCells = [];
-        this.topCtx = this.getCanvas();
-        this.getCells();
+        this.topCanvas;
+        this.topCtx;
+
+        this.init();
     }
 
-    getCanvas() {
-        let canvas = document.getElementById("top-canvas");
-        canvas.height = 20;
-        canvas.width = screen.width;
-        return canvas.getContext("2d");
+    init() {
+      this.topCanvas = document.getElementById("top-canvas")
+      this.topCanvas.height = 20
+      this.topCanvas.width = screen.width
+      this.topCtx = this.topCanvas.getContext("2d")
+
+      this.getCells()
+      this.render()
     }
     getCells(){
-        for (let j = 0; j < this.columns; j++) {
-            var cell = new cellStruct(1 + j * this.width + 0.5, 1, this.width, this.height, `${this.getColumnName(j + 1)}`, false, 0, this.topCtx);
-            cell.drawCell();
+        for (let j = 0; j < this.dimension.columns; j++) {
+            var cell = new cellStruct(1 + j * this.dimension.width + 0.5, 1, this.dimension.width, this.dimension.height, `${this.getColumnName(j + 1)}`, false, 0, this.topCtx);
             this.topCells.push(cell);
         }
+    }
+
+    render() {
+      this.topCtx.reset(0,0,this.topCanvas.width,this.topCanvas.height)
+      for(let i=this.dimension.leftIndex; i<this.dimension.rightIndex; i++){
+        this.topCells[i].xVal = this.dimension.cWidthPrefixSum[i] - this.dimension.shiftLeftX + 0.5;
+        this.topCells[i].drawCell()
+      }
+    }
+
+    addCells(num) {
+      var currentColumnLength = this.topCells.length;
+      for (let i = 0; i < num; i++) {
+          var cell = new cellStruct(1, 1, this.dimension.width, this.dimension.height, `${currentColumnLength + i}`, false, 0, this.topCtx);
+          this.topCells.push(cell);
+      }
     }
     getColumnName(num) {
         var s = "",

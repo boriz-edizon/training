@@ -1,4 +1,4 @@
-export class dimensions{
+export class dimension{
     constructor(rows,columns,width,height){
         this.rows=rows;
         this.columns=columns;
@@ -24,14 +24,16 @@ export class dimensions{
     }
 
     cellXIndex(num) {
-        for (var i = 0; i < this.cWidthPrefixSum.length; i++) {
-          if (num >= this.cWidthPrefixSum[i - 1] && num < this.cWidthPrefixSum[i]) return i;
+        for (var i = 1; i < this.cWidthPrefixSum.length; i++) {
+          if (num >= this.cWidthPrefixSum[i - 1] && num < this.cWidthPrefixSum[i]) return i-1;
         }
+        return this.cWidthPrefixSum.length-1
       }
 
     cellYIndex(num) {
-        for (var i = 0; i < this.rHeightPrefixSum.length; i++) {
-          if (num >= this.rHeightPrefixSum[i - 1] && num < this.rHeightPrefixSum[i]) return i;
+        for (var i = 1; i < this.rHeightPrefixSum.length; i++) {
+          if (num >= this.rHeightPrefixSum[i - 1] && num < this.rHeightPrefixSum[i]) return i-1;
         }
+        return this.rHeightPrefixSum.length-1;
       }    
 }

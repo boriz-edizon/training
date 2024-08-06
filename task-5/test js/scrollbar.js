@@ -18,6 +18,8 @@ function init() {
     return parseInt(getComputedStyle(obj, null)[attrib], 10);
   };
 
+
+  
   // vertical scroll
   sliderY.addEventListener("mousedown", function (e) {
     // distance between slider top and mousedown
@@ -31,15 +33,6 @@ function init() {
     yTravelled = e.pageY - getAtInt(trackY, "top") - mouseDownYOffset;
     yScroll();
   }
-  // wheel y axis
-  canvas.addEventListener("wheel", function (e) {
-    if (!horizontalScroll) {
-      yTravelled +=
-        (e.deltaY / 1000) *
-        (getAtInt(trackY, "height") - getAtInt(sliderY, "height"));
-      yScroll();
-    }
-  });
   // y scroll
   function yScroll() {
     if (yTravelled < 0) {
@@ -55,27 +48,36 @@ function init() {
     ) {
       if (getAtInt(sliderY, "height") > 40) {
         sliderY.style.height =
-          (canvas.height * canvas.height) / containerHeight + "px";
+        (canvas.height * canvas.height) / containerHeight + "px";
       }
       addRows();
       containerHeight = rHeightPrefixSum[rHeightPrefixSum.length - 1];
       sliderY.style.top =
-        0.5 * (getAtInt(trackY, "height") - getAtInt(sliderY, "height"));
+      0.5 * (getAtInt(trackY, "height") - getAtInt(sliderY, "height"));
       yTravelled =
-        0.5 * (getAtInt(trackY, "height") - getAtInt(sliderY, "height"));
+      0.5 * (getAtInt(trackY, "height") - getAtInt(sliderY, "height"));
     } else {
       sliderY.style.top = yTravelled + "px";
       sliderPercentageY =
-        (yTravelled /
-          (getAtInt(trackY, "height") - getAtInt(sliderY, "height"))) *
+      (yTravelled /
+        (getAtInt(trackY, "height") - getAtInt(sliderY, "height"))) *
         100;
-      shiftTopY = (sliderPercentageY * (containerHeight - canvas.height)) / 100;
-      shiftBottomY = shiftTopY + canvas.height;
-      redraw(1);
+        shiftTopY = (sliderPercentageY * (containerHeight - canvas.height)) / 100;
+        shiftBottomY = shiftTopY + canvas.height;
+        redraw(1);
+      }
     }
-  }
-
-  // horizontal scroll
+    // wheel y axis
+    canvas.addEventListener("wheel", function (e) {
+      if (!horizontalScroll) {
+        yTravelled +=
+          (e.deltaY / 1000) *
+          (getAtInt(trackY, "height") - getAtInt(sliderY, "height"));
+        yScroll();
+      }
+    });
+    
+    // horizontal scroll
   sliderX.addEventListener("mousedown", function (e) {
     // distance between slider left and mousedown
     mouseDownXOffset =

@@ -1,15 +1,18 @@
 import { mainGrid } from "./imports/mainGrid.js"
 import { topGrid } from "./imports/topGrid.js"
 import { sideGrid } from "./imports/sideGrid.js"
-import { dimensions } from "./imports/dimension.js"
+import { dimension } from "./imports/dimension.js"
+import { scroll } from "./imports/scroll.js"
 
 class excel {
     constructor (rows, columns, width, height) {
-        this.dimensions = new dimensions ( rows, columns, width, height)
-        // this.topGrid = new topGrid (this.dimensions)
-        // this.sideGrid = new sideGrid (this.dimensions)
-        this.mainGrid = new mainGrid (this.dimensions)
+        this.dimension = new dimension ( rows, columns, width, height)
+        this.mainGrid = new mainGrid (this.dimension)
+        this.topGrid = new topGrid (this.dimension)
+        this.sideGrid = new sideGrid (this.dimension)
+
+        this.scroll = new scroll (this.dimension,this.mainGrid,this.sideGrid, this.topGrid)
     }
 }
 
-var init = new excel(100, 60, 60, 20)
+var sheet = new excel(100, 60, 60, 20)
