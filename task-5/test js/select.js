@@ -10,12 +10,6 @@ canvas.addEventListener("mousedown", function (e) {
   mouseMove(xInd, yInd);
 });
 
-function removeElements(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    arr[i].isSelected = false;
-    arr[i].selectCell();
-  }
-}
 
 // selected cells
 const mouseMove = (xInd, yInd) => {
@@ -23,7 +17,7 @@ const mouseMove = (xInd, yInd) => {
   let newYind = -1;
   let startXInd = xInd;
   let startYInd = yInd;
-
+  
   canvas.addEventListener("mousemove", move);
   function move(e) {
     var newXind1 = cellXIndex(shiftLeftX + e.offsetX) - 1;
@@ -34,15 +28,15 @@ const mouseMove = (xInd, yInd) => {
       newXind = newXind1;
       newYind = newYind1;
     }
-
+    
     removeElements(selectedMain);
     removeElements(selectedSide);
     removeElements(selectedTop);
-
+    
     selectedMain = [];
     selectedSide = [];
     selectedTop = [];
-
+    
     for (let i = Math.min(yInd, newYind); i <= Math.max(yInd, newYind); i++) {
       sideCells[i].isSelected = true;
       selectedSide.push(sideCells[i]);
@@ -56,6 +50,14 @@ const mouseMove = (xInd, yInd) => {
         cells[i][j].isSelected = true;
         selectedMain.push(cells[i][j]);
         cells[i][j].selectCell();
+      }
+    }
+    
+    
+    function removeElements(arr) {
+      for (let i = 0; i < arr.length; i++) {
+        arr[i].isSelected = false;
+        arr[i].selectCell();
       }
     }
   }

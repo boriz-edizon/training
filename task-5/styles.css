@@ -1,54 +1,90 @@
 body {
   margin: 0px;
 }
-#header {
-  background-color: #F5F5F5;
+/* navbar */
+#ribbon-container {
+  background-color: #f5faf7;
   height: 10vh;
+  width: 100vw;
   display: flex;
+  flex-direction: column;
+  padding: 10px;
+  }
+.tab-list-container{
+  height: max-content;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
+  padding-left: 20px;
+  margin-bottom: 5px;
+}
+.tab-list-container > span {
+  margin-right: 10px;
+}
+.tab-list-container > .active {
+  border-bottom: 2px solid #107C41;
+}
+.tab-list-container-items:hover {
+  border-bottom: 2px solid #107C41;
+  cursor: pointer;
+}
+.focus-zone {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-around;
-  padding-left: 15px;
+  background-color: #107C41;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 7px;
 }
-#header > button,p {
-  height: 40px;
+.focus-zone-inner {
+  width: 100%;
 }
+.focus-zone-left {
+  display: flex;
+  flex-direction: row;
+}
+.focus-zone-right {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+}
+.focus-zone-right {
+  color: white;
+}
+input {
+  display: none;
+  position: absolute;
+  padding: 0;
+  outline: none;
+  border: 2px solid #107C41;
+}  
+input:focus{
+border: 2px solid #107C41;
+}
+
+/* main area */
 #main-area {
   height: 90vh;
   overflow: hidden;
   position: relative;
-}
-#verticall-div,#horizontal-div{
-  background-color: #F5F5F5;
-  position: absolute;
-}
+} 
 #row-1{
   height: 20px;
   display: flex;
   justify-content: start;
   background-color: #F5F5F5;
 }
-#vertrical{
-  background-color: #F5F5F5;
-}
 #row-2{
   display: flex;
-}
-#corner{
-  width: 61px;
+  height: 1050px;
 }
 #main-canvas {
     cursor: cell;
 }
-input {
-    display: none;
-    position: absolute;
-    padding: 0;
-    outline: none;
-    border: 2px solid #107C41;
-}  
-input:focus{
-  border: 2px solid #107C41;
-}
+
+/* scrollbar */
 #track-y {
   position: absolute;
   z-index: 10001;
@@ -60,7 +96,6 @@ input:focus{
   bottom: 0;
   cursor: default;
 }
-
 #slider-y {
   position: absolute;
   left: 0px;
@@ -71,7 +106,6 @@ input:focus{
   background: #8A8A8A;
   /* transition: 0.15s all; */
 }
-
 #track-x {
   position: absolute;
   z-index: 10000;
@@ -82,7 +116,6 @@ input:focus{
   cursor: default;
   width: 100vw;
 }
-
 #slider-x {
   position: absolute;
   left: 0px;
@@ -92,4 +125,25 @@ input:focus{
   height: 10px;
   background: #8A8A8A;
   /* transition: 0.15s all; */
+}
+
+/* graph */
+.graph {
+  display: none;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 500px;
+  position: absolute;
+  top: 340px;
+  left: 35%;
+  border: 1px dotted;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+}
+.graph-close {
+  position: absolute;
+  border-radius: 5px;
+  right: 5;
+  top: 5;
 }

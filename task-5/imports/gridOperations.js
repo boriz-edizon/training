@@ -16,8 +16,16 @@ export class gridOperations {
         this.previousIndexX = -1
         this.previousIndexY = -1
 
-        this.isSelecting
+        this.sumText = document.querySelector(".sum-text");
+        this.minText = document.querySelector(".min-text");
+        this.maxText = document.querySelector(".max-text");
+        this.avgText = document.querySelector(".avg-text");
 
+        this.count = 0;
+        this.sum = 0;
+
+        this.isSelecting
+        this.isInput = false
         this.eventListeners()
     }
 
@@ -31,85 +39,127 @@ export class gridOperations {
         this.isSelecting = true
         this.selectIndexX = this.dimension.cellXIndex(this.dimension.shiftLeftX + e.offsetX);
         this.selectIndexY = this.dimension.cellYIndex(this.dimension.shiftTopY + e.offsetY);
-      
 
         this.removeElements(this.dimension.selectedMain);
         this.removeElements(this.dimension.selectedTop);
         this.removeElements(this.dimension.selectedSide);
-      
+
+        this.dimension.selectedMain = [];
+        this.dimension.selectedSide = [];
+        this.dimension.selectedTop = [];
+
+        this.dimension.topValues = [];
+        this.dimension.mainValues = [];
+        this.dimension.sideValues = [];
+
         // select a particular cell for input
-        this.selectCell = this.mainGrid.mainCells[this.selectIndexY][this.selectIndexX];
-        this.selectCell.isClicked = true;
+        this.addElements(this.mainGrid.mainCells[this.selectIndexY][this.selectIndexX],this.dimension.selectedMain)
+        this.addElements(this.sideGrid.sideCells[this.selectIndexY],this.dimension.selectedSide)
+        this.addElements(this.topGrid.topCells[this.selectIndexX],this.dimension.selectedTop)
       
-        this.sideGrid.sideCells[this.selectIndexY].isSelected = true;
-        this.dimension.selectedSide.push(this.sideGrid.sideCells[this.selectIndexY]);
-        this.sideGrid.sideCells[this.selectIndexY].highlightCell();
-      
-        this.topGrid.topCells[this.selectIndexX].isSelected = true;
-        this.dimension.selectedTop.push(this.topGrid.topCells[this.selectIndexX]);
-        this.topGrid.topCells[this.selectIndexX].highlightCell();
-      
-        this.cellInput.value = this.selectCell.value;
+        this.getValues(this.dimension.topValues,this.dimension.selectedTop)
+        this.getValues(this.dimension.mainValues,this.dimension.selectedMain)
+        this.getValues(this.dimension.sideValues,this.dimension.selectedSide)
+
+        if(this.isInput){
+          this.updateText(this.selectedCell,this.cellInput.value)
+          this.isInput = false
+        }
+
+        this.selectedCell = this.mainGrid.mainCells[this.selectIndexY][this.selectIndexX]
+        this.cellInput.value = this.selectedCell.value;
         this.cellInput.style.display = "block";
-        this.cellInput.style.top = this.selectCell.yVal + this.mainGrid.mainCanvas.offsetTop;
-        this.cellInput.style.left = this.selectCell.xVal + this.mainGrid.mainCanvas.offsetLeft;
-        this.cellInput.style.height = this.selectCell.height;
-        this.cellInput.style.width = this.selectCell.width;
-      
-        this.cellInput.focus();
-        
-        this.cellInput.onblur = () => {
-          this.selectCell.value = this.cellInput.value;
-          console.log(this.cellInput.value)
-          this.selectCell.drawCell();
-        }
+        this.cellInput.style.top = this.selectedCell.yVal + this.mainGrid.mainCanvas.offsetTop;
+        this.cellInput.style.left = this.selectedCell.xVal + this.mainGrid.mainCanvas.offsetLeft;
+        this.cellInput.style.height = this.selectedCell.height;
+        this.cellInput.style.width = this.selectedCell.width;
+        this.isInput = true
     }
+
+    updateText(cell,value){
+      cell.value = value;
+      console.log(cell.value,value)
+      cell.drawCell()
+    }
+
+    handleMouseMove (e) {
+      // select multiple cells
+      if(this.isSelecting) {
+          this.currentIndexX = this.dimension.cellXIndex(this.dimension.shiftLeftX + e.offsetX);
+          this.currentIndexY = this.dimension.cellYIndex(this.dimension.shiftTopY + e.offsetY);
+  
+          if (this.previousIndexX == this.currentIndexX && this.previousIndexY == this.currentIndexY) {
+            return;
+          } else {
+            this.previousIndexX = this.currentIndexX;
+            this.previousIndexY = this.currentIndexY;
+          }
       
-      handleMouseMove (e) {
-        if(this.isSelecting) {
-            this.currentIndexX = this.dimension.cellXIndex(this.dimension.shiftLeftX + e.offsetX);
-            this.currentIndexY = this.dimension.cellYIndex(this.dimension.shiftTopY + e.offsetY);
-    
-            if (this.previousIndexX == this.currentIndexX && this.previousIndexY == this.currentIndexY) {
-              return;
-            } else {
-              this.previousIndexX = this.currentIndexX;
-              this.previousIndexY = this.currentIndexY;
-            }
-        
-            this.removeElements(this.dimension.selectedMain);
-            this.removeElements(this.dimension.selectedSide);
-            this.removeElements(this.dimension.selectedTop);
-        
-            this.dimension.selectedMain = [];
-            this.dimension.selectedSide = [];
-            this.dimension.selectedTop = [];
-        
-            for (let i = Math.min(this.currentIndexY, this.selectIndexY); i <= Math.max(this.currentIndexY, this.selectIndexY); i++) {
-              this.sideGrid.sideCells[i].isSelected = true;
-              this.dimension.selectedSide.push(this.sideGrid.sideCells[i]);
-              this.sideGrid.sideCells[i].highlightCell();
-    
-              for (let j = Math.min(this.currentIndexX, this.selectIndexX); j <= Math.max(this.currentIndexX, this.selectIndexX); j++) {
-                if (i === Math.min(this.currentIndexY, this.previousIndexY)) {
-                  this.topGrid.topCells[j].isSelected = true;
-                  this.dimension.selectedTop.push(this.topGrid.topCells[j]);
-                  this.topGrid.topCells[j].highlightCell();
-                }
-    
-                this.mainGrid.mainCells[i][j].isSelected = true;
-                this.dimension.selectedMain.push(this.mainGrid.mainCells[i][j]);
-                this.mainGrid.mainCells[i][j].selectCell();
+          this.removeElements(this.dimension.selectedMain);
+          this.removeElements(this.dimension.selectedSide);
+          this.removeElements(this.dimension.selectedTop);
+      
+          this.dimension.selectedMain = [];
+          this.dimension.selectedSide = [];
+          this.dimension.selectedTop = [];
+
+          this.dimension.topValues = [];
+          this.dimension.mainValues = [];
+          this.dimension.sideValues = [];
+      
+          for (let i = Math.min(this.currentIndexY, this.selectIndexY); i <= Math.max(this.currentIndexY, this.selectIndexY); i++) {
+            this.addElements(this.sideGrid.sideCells[i],this.dimension.selectedSide)
+            for (let j = Math.min(this.currentIndexX, this.selectIndexX); j <= Math.max(this.currentIndexX, this.selectIndexX); j++) {
+              if (i === Math.min(this.currentIndexY, this.previousIndexY)) {
+                this.addElements(this.topGrid.topCells[j],this.dimension.selectedTop)
               }
+              this.addElements(this.mainGrid.mainCells[i][j],this.dimension.selectedMain)
             }
+          }
 
+          this.getValues(this.dimension.topValues,this.dimension.selectedTop)
+          this.getValues(this.dimension.mainValues,this.dimension.selectedMain)
+          this.getValues(this.dimension.sideValues,this.dimension.selectedSide)
+      }
+    }
+
+    handleMouseUp() {
+      this.isSelecting = false;
+      if (this.dimension.selectedMain.length > 0) {
+        for (let i = 0; i < this.dimension.selectedMain.length; i++) {
+          if (typeof this.dimension.mainValues[i] === "number") {
+            this.sum += this.dimension.mainValues[i];
+            this.count += 1;
+          }
         }
-      }
 
-      handleMouseUp() {
-        this.isSelecting = false;
-      }
+        this.min = Math.min(...this.dimension.mainValues);
+        this.max = Math.max(...this.dimension.mainValues);
 
+        this.sumText.innerHTML = `Sum: <span>${this.sum.toFixed(2)}</span>`;
+        this.minText.innerHTML = `Min: <span>${this.min}</span>`;
+        this.maxText.innerHTML = `Max: <span>${this.max}</span>`;
+        this.avgText.innerHTML = `Average: <span>${(this.sum / this.count).toFixed(2)}</span>`;
+
+        this.count = 0
+        this.sum = 0
+      }
+    }
+
+    getValues(values,arr){
+      for(let i = 0 ; i<arr.length; i++){
+          values.push(arr[i].value)
+      }
+    }
+
+    // add elements to the selected array
+    addElements(cell,arr){
+      arr.push(cell)
+      cell.isSelected = true
+      cell.selectCell()
+    }
+
+    // remove elements from the selected array
     removeElements(arr) {
         for (let i = 0; i < arr.length; i++){
             arr[i].isSelected = false;

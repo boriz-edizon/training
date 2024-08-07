@@ -4,6 +4,7 @@ import { sideGrid } from "./imports/sideGrid.js"
 import { dimension } from "./imports/dimension.js"
 import { scroll } from "./imports/scroll.js"
 import { gridOperations } from "./imports/gridOperations.js"
+import { graph } from "./imports/graph.js"
 
 class excel {
     constructor (rows, columns, width, height) {
@@ -14,6 +15,7 @@ class excel {
 
         this.scroll = new scroll (this.dimension, this.mainGrid, this.sideGrid, this.topGrid)
         this.gridOperations = new gridOperations(this.dimension, this.mainGrid, this.sideGrid, this.topGrid)
+        this.graph = new graph(this.dimension)
     }
 }
 

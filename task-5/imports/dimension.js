@@ -9,6 +9,10 @@ export class dimension{
         this.selectedTop = []
         this.selectedSide = []
 
+        this.topValues = []
+        this.mainValues = []
+        this.sideValues = []
+
         this.cWidthPrefixSum=[0];
         this.rHeightPrefixSum=[0];
 

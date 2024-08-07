@@ -35,13 +35,4 @@ export class cellStruct {
           this.drawCell();
         }
       }
-
-      highlightCell() {
-        if (this.isSelected) {
-          this.ctx.fillStyle = "rgba(19, 126, 67, 0.2)";
-          this.ctx.fillRect(this.xVal, this.yVal, this.width, this.height);
-        } else {
-          this.drawCell();
-        }
-      }
 }

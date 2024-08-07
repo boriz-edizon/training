@@ -95,6 +95,7 @@ export class scroll {
                 this.containerHeight = this.dimension.rHeightPrefixSum[this.dimension.rHeightPrefixSum.length - 1];
                 this.sliderY.style.top = 0.5 * (this.getAttInt(this.trackY, "height") - this.getAttInt(this.sliderY, "height"));
                 this.yTravelled = 0.5 * (this.getAttInt(this.trackY, "height") - this.getAttInt(this.sliderY, "height"));
+                this.isScrollY = false
             } else {
                 this.sliderY.style.top = this.yTravelled + "px";
                 this.sliderPercentageY = (this.yTravelled / (this.getAttInt(this.trackY, "height") - this.getAttInt(this.sliderY, "height"))) * 100;
@@ -140,7 +141,7 @@ export class scroll {
                   if (this.getAttInt(this.sliderX, "width") > 40) {
                       this.sliderX.style.width = ((this.mainGrid.mainCanvas.width * this.mainGrid.mainCanvas.width) / this.containerWidth) + "px";
                   }
-                  
+                  this.isScrollX = false
               } else {
                 this.sliderX.style.left = this.xTravelled + "px";
                 this.sliderPercentageX = (this.xTravelled / (this.getAttInt(this.trackX, "width") - this.getAttInt(this.sliderX, "width"))) * 100;
