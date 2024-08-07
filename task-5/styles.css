@@ -5,7 +5,12 @@ body {
   background-color: #F5F5F5;
   height: 10vh;
   display: flex;
+  align-items: center;
+  justify-content: space-around;
   padding-left: 15px;
+}
+#header > button,p {
+  height: 40px;
 }
 #main-area {
   height: 90vh;
@@ -87,8 +92,4 @@ input:focus{
   height: 10px;
   background: #8A8A8A;
   /* transition: 0.15s all; */
-}
-button {
-  position: absolute;
-  bottom: 0;
 }

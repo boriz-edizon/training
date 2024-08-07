@@ -12,7 +12,6 @@ export class scroll {
         this.trackY;
         this.sliderPercentageY;
         this.yTravelled;
-        // distance between slider top and mousedown
         this.mouseDownYOffset;
         this.isScrollY;
 
@@ -20,7 +19,6 @@ export class scroll {
         this.trackX;
         this.sliderPercentageX;
         this.xTravelled;
-        // distance between slider left and mousedown
         this.mouseDownXOffset;
         this.isScrollX;
 
@@ -28,7 +26,9 @@ export class scroll {
     }
 
     init() {
+        // summation of height of all the rows
         this.containerHeight = this.dimension.rHeightPrefixSum[this.dimension.rHeightPrefixSum.length - 1]
+        // summation of width of all the columns
         this.containerWidth = this.dimension.cWidthPrefixSum[this.dimension.cWidthPrefixSum.length - 1];
 
         this.sliderY = document.getElementById("slider-y");
@@ -55,16 +55,19 @@ export class scroll {
 
     handleMouseDownY(e) {
         this.isScrollY = true;
+        // distance between slider top and mousedown
         this.mouseDownYOffset = e.pageY - this.getAttInt(this.trackY, "top") - this.getAttInt(this.sliderY, "top");
     }
     handleMouseDownX(e) {
         this.isScrollX = true;
+        // distance between slider left and mousedown
         this.mouseDownXOffset = e.pageX - this.getAttInt(this.trackX, "left") - this.getAttInt(this.sliderX, "left");
     }
     handleMouseMove(e){
         // vertical scroll
         if(this.isScrollY) {
             this.yTravelled = e.pageY - this.getAttInt(this.trackY, "top") - this.mouseDownYOffset
+            // if slider moves above the scrollbar
             if (this.yTravelled < 0) {
                 
                 this.sliderY.style.top = 0;
@@ -79,7 +82,9 @@ export class scroll {
                 
                 this.mainGrid.render();
                 this.sideGrid.render()
-            } else if (this.yTravelled > 0.8 * (this.getAttInt(this.trackY, "height") - this.getAttInt(this.sliderY, "height"))) {
+            } 
+            // if slider travels more than 80% of the available space
+            else if (this.yTravelled > 0.8 * (this.getAttInt(this.trackY, "height") - this.getAttInt(this.sliderY, "height"))) {
                 if (this.getAttInt(this.sliderY, "height") > 40) {
                     this.sliderY.style.height = (this.mainGrid.mainCanvas.height * this.mainGrid.mainCanvas.height) / this.containerHeight + "px";
                 }
@@ -107,6 +112,7 @@ export class scroll {
         // horizontal scroll 
         else if ( this.isScrollX){
             this.xTravelled = e.pageX - this.getAttInt(this.trackX, "left") - this.mouseDownXOffset
+            // if slider moves left of scrollbar
             if (this.xTravelled < 0) {
                 
                 this.sliderX.style.left = 0;
@@ -121,7 +127,9 @@ export class scroll {
 
                 this.mainGrid.render();
                 this.topGrid.render();
-              } else if (this.xTravelled > 0.8 * (this.getAttInt(this.trackX, "width") - this.getAttInt(this.sliderX, "width"))) {
+              } 
+                // if slider travels more than 80% of the available space
+              else if (this.xTravelled > 0.8 * (this.getAttInt(this.trackX, "width") - this.getAttInt(this.sliderX, "width"))) {
                   this.mainGrid.addColumns(10);
                   this.topGrid.addCells(10)
 

@@ -80,7 +80,6 @@ export class mainGrid{
         for (let i = 0; i < currentRowLength - 1; i++) {
             for (let j = 0; j < num; j++) {
                 if(i==0){
-
                     this.dimension.cWidthPrefixSum.push(this.dimension.cWidthPrefixSum[currentColumnLength + j - 1] + this.dimension.width);
                 }
                 var cell = new cellStruct(1, 1, this.dimension.width, this.dimension.height, `${i} ${currentColumnLength + j}`, false, 0, this.mainCtx);
