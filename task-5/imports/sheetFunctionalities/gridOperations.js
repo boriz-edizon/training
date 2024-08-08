@@ -16,6 +16,7 @@ export class gridOperations {
         this.previousIndexX = -1
         this.previousIndexY = -1
 
+        this.countText = document.querySelector(".count-text");
         this.sumText = document.querySelector(".sum-text");
         this.minText = document.querySelector(".min-text");
         this.maxText = document.querySelector(".max-text");
@@ -23,6 +24,8 @@ export class gridOperations {
 
         this.count = 0;
         this.sum = 0;
+        this.min
+        this.max
 
         this.isSelecting
         this.isInput = false
@@ -78,7 +81,6 @@ export class gridOperations {
 
     updateText(cell,value){
       cell.value = value;
-      console.log(cell.value,value)
       cell.drawCell()
     }
 
@@ -121,29 +123,45 @@ export class gridOperations {
           this.getValues(this.dimension.mainValues,this.dimension.selectedMain)
           this.getValues(this.dimension.sideValues,this.dimension.selectedSide)
       }
+
+      // mathematical parameter
+      this.count = 0
+      this.sum = 0
+      if (this.dimension.selectedMain.length > 0) {
+        this.min = Number.MAX_VALUE
+        this.max = -Number.MAX_VALUE
+
+        for (let i = 0; i < this.dimension.selectedMain.length; i++) {
+          if( this.dimension.mainValues[i] === "") continue
+          let value = Number(this.dimension.mainValues[i])
+
+          if (!Number.isNaN(value)) {
+            this.sum += value;
+            this.count += 1;
+            this.min = Math.min(this.min, value);
+            this.max = Math.max(this.max,value);
+          }
+        }
+
+        if(this.count>1){
+          this.countText.innerHTML = `count: <span>${this.count}</span>`;
+          this.sumText.innerHTML = `Sum: <span>${this.sum}</span>`;
+          this.minText.innerHTML = `Min: <span>${this.min}</span>`;
+          this.maxText.innerHTML = `Max: <span>${this.max}</span>`;
+          this.avgText.innerHTML = `Average: <span>${(this.sum / this.count).toFixed(2)}</span>`;  
+        }else {
+          this.countText.innerHTML = ``;
+          this.sumText.innerHTML = ``;
+          this.minText.innerHTML = ``;
+          this.maxText.innerHTML = ``;
+          this.avgText.innerHTML = ``;  
+        }
+      }
+
     }
 
     handleMouseUp() {
       this.isSelecting = false;
-      if (this.dimension.selectedMain.length > 0) {
-        for (let i = 0; i < this.dimension.selectedMain.length; i++) {
-          if (typeof this.dimension.mainValues[i] === "number") {
-            this.sum += this.dimension.mainValues[i];
-            this.count += 1;
-          }
-        }
-
-        this.min = Math.min(...this.dimension.mainValues);
-        this.max = Math.max(...this.dimension.mainValues);
-
-        this.sumText.innerHTML = `Sum: <span>${this.sum.toFixed(2)}</span>`;
-        this.minText.innerHTML = `Min: <span>${this.min}</span>`;
-        this.maxText.innerHTML = `Max: <span>${this.max}</span>`;
-        this.avgText.innerHTML = `Average: <span>${(this.sum / this.count).toFixed(2)}</span>`;
-
-        this.count = 0
-        this.sum = 0
-      }
     }
 
     getValues(values,arr){

@@ -4,28 +4,26 @@ export class graph {
 
       this.graphCanvasElement = document.getElementById("myChart");
       this.graph = document.querySelector(".graph");
-      this.barGraph = document.querySelector(".graph-bar-btn");
-      this.lineGraph = document.querySelector(".graph-line-btn");
-      this.pieGraph = document.querySelector(".graph-pie-btn");
+      this.barGraphBtn = document.querySelector(".graph-bar-btn");
+      this.lineGraphBtn = document.querySelector(".graph-line-btn");
+      this.pieGraphBtn = document.querySelector(".graph-pie-btn");
       this.graphCloseBtn = document.querySelector(".graph-close")
       
-      this.draw = false
       this.init()
     }
   
     init() {
-
-        this.barGraph.addEventListener("click", () => {
+        this.barGraphBtn.addEventListener("click", () => {
             this.graph.style.display = "inline-block";
             this.drawBarGraph();
           });
       
-          this.lineGraph.addEventListener("click", () => {
+          this.lineGraphBtn.addEventListener("click", () => {
             this.graph.style.display = "inline-block";
             this.drawLineGraph();
           });
       
-          this.pieGraph.addEventListener("click", () => {
+          this.pieGraphBtn.addEventListener("click", () => {
             this.graph.style.display = "inline-block";
             this.drawPieGraph();
           });
@@ -38,8 +36,7 @@ export class graph {
     // destroy graph
     destroyGraph(){
       if(this.draw){
-          this.draw.destroy()
-          this.draw = false
+        this.draw.destroy()
       }
     }
 

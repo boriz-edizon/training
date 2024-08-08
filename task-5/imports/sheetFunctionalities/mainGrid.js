@@ -82,7 +82,7 @@ export class mainGrid{
                 if(i==0){
                     this.dimension.cWidthPrefixSum.push(this.dimension.cWidthPrefixSum[currentColumnLength + j - 1] + this.dimension.width);
                 }
-                var cell = new cellStruct(1, 1, this.dimension.width, this.dimension.height, `${i} ${currentColumnLength + j}`, false, 0, this.mainCtx);
+                var cell = new cellStruct(1, 1, this.dimension.width, this.dimension.height, Math.floor(Math.random()*1000), false, 0, this.mainCtx);
                 this.mainCells[i].push(cell);
           }
         }

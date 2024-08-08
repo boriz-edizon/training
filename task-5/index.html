@@ -35,45 +35,70 @@
             </div>
   
             <div class="col-6 focus-zone-right">
-              <span class="sum-text">Sum: </span>
-              <span class="min-text">Min: </span>
-              <span class="max-text">Max: </span>
-              <span class="avg-text">Average: </span>
+              <span class="count-text"></span>
+              <span class="sum-text"></span>
+              <span class="min-text"></span>
+              <span class="max-text"></span>
+              <span class="avg-text"></span>
             </div>
           </div>
         </div>
 
       </div>
       
-      <div id="main-area">
-        <input type="text" name="content" id="content" >
-
-        <div id="row-1">
-          <canvas id="" width="60" height="20"></canvas>
-          <canvas id="top-canvas"></canvas>
-        </div>
-
-        <div id="row-2">
-          <canvas id="side-canvas"></canvas>
-          <div class="spreadsheet">
-            <input type="text" class="text">
-            <canvas id="main-canvas"></canvas>
-            <div id='track-y'>
-              <div id='slider-y'>
-              </div>
-            </div>       
-            <div id='track-x'>
-              <div id='slider-x'>
-              </div>
+      <!-- excel -->
+      <div id="excel">
+        <div class="spreadsheet">
+          <div id="row-1">
+            <canvas id="" width="60" height="20"></canvas>
+            <canvas id="top-canvas"></canvas>
+          </div>
+  
+          <div id="row-2">
+  
+            <canvas id="side-canvas"></canvas>
+  
+            <div class="sheet">
+              <input type="text" class="text">
+              <canvas id="main-canvas"></canvas>
+              <div id='track-y'>
+                <div id='slider-y'>
+                </div>
+              </div>       
+              <div id='track-x'>
+                <div id='slider-x'>
+                </div>
+              </div>  
             </div>  
-          </div>  
+            
+          </div>
         </div>
+      </div>
 
-        <div class="graph">
-          <button class="graph-close btn btn-sm btn-danger">X</button>
-          <canvas id="myChart"></canvas>
+      <!-- graph -->
+      <div class="graph">
+        <button class="graph-close btn btn-sm btn-danger">X</button>
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <!-- sheet tab bar -->
+      <div class="sheet-tab-bar">
+        <div class="sheet-list-container">
+
+          <button class="add-sheet-btn"><b>+</b></button>
+
+          
+          <span class="sheet-tab-btn sheet-tab-btn-1 active">
+            <span class="sheet-label sheet-label-1">
+              Sheet 1
+            </span>
+            <button class="sheet-close-btn sheet-close-1">
+              <span>X</span>
+            </button>
+          </span>
+
+
         </div>
-
       </div>
 
       <script type="module" src="./excel.js"></script>

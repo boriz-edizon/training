@@ -64,9 +64,9 @@ input:focus{
 border: 2px solid #107C41;
 }
 
-/* main area */
-#main-area {
-  height: 90vh;
+/* excel */
+#excel {
+  height: 86.5vh;
   overflow: hidden;
   position: relative;
 } 
@@ -147,3 +147,58 @@ border: 2px solid #107C41;
   right: 5;
   top: 5;
 }
+
+/* sheet tab bar */
+.sheet-tab-bar {
+  background-color: #f5faf7;
+  height: 3.5vh;
+  width: 100vw;
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  }
+  .sheet-list-container{
+    height: inherit;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    flex-direction: row;
+    padding-left: 5px;
+  }
+  .add-sheet-btn {
+    height: inherit;
+  }
+  
+  .sheet-list-container > span {
+    height: inherit;
+    display: flex;
+    align-items: end;
+    position: relative;
+    margin-right: 5px;
+    padding-left: 3px;
+  }
+  .sheet-list-container > .active {
+    border-bottom: 3px solid #217346;  
+    font-weight: bold;
+  }
+  .sheet-tab-btn:hover {
+    border-bottom: 3px solid #217346;    
+    cursor: pointer;
+  }
+  .sheet-close-btn {
+    margin-left: 2px;
+    border: none;
+    background-color: transparent;
+    width: 20px;
+    font-size: 15px;
+    height: inherit;
+    color: black;
+    text-align: center;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+  }
+  .sheet-close-btn:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
